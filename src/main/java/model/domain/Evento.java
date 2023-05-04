@@ -24,11 +24,17 @@ public class Evento {
 		this.pais="";
 		this.modalidad="";
 		this.fecha=null;
+		this.f1=null;
+		this.f2=null;
+		this.m1=null;
 	}
 
 
+
+
 	public Evento(int id_evento, String nombre, String recinto, String ciudad, String pais, String modalidad,
-			Date fecha) {
+			Date fecha, Peleador f1, Peleador f2, Matchmaker m1) {
+		super();
 		this.id_evento = id_evento;
 		this.nombre = nombre;
 		this.recinto = recinto;
@@ -36,7 +42,12 @@ public class Evento {
 		this.pais = pais;
 		this.modalidad = modalidad;
 		this.fecha = fecha;
+		this.f1 = f1;
+		this.f2 = f2;
+		this.m1 = m1;
 	}
+
+
 
 
 	public int getId_evento() {
@@ -109,10 +120,40 @@ public class Evento {
 	}
 
 
+	public Peleador getF1() {
+		return f1;
+	}
+
+
+	public void setF1(Peleador f1) {
+		this.f1 = f1;
+	}
+
+
+	public Peleador getF2() {
+		return f2;
+	}
+
+
+	public void setF2(Peleador f2) {
+		this.f2 = f2;
+	}
+
+
+	public Matchmaker getM1() {
+		return m1;
+	}
+
+
+	public void setM1(Matchmaker m1) {
+		this.m1 = m1;
+	}
+
 	@Override
 	public String toString() {
 		return "Evento [id_evento=" + id_evento + ", nombre=" + nombre + ", recinto=" + recinto + ", ciudad=" + ciudad
-				+ ", pais=" + pais + ", modalidad=" + modalidad + ", fecha=" + fecha + "]";
+				+ ", pais=" + pais + ", modalidad=" + modalidad + ", fecha=" + fecha + ", f1=" + f1 + ", f2=" + f2
+				+ ", m1=" + m1 + "]";
 	}
 
 

@@ -30,11 +30,6 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-		<dependency>
-			<groupId>Alex.2023</groupId>
-			<artifactId>Ej2AccesoBBDD</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -44,11 +39,6 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>13</version>
-        </dependency>
-        <dependency>
-        	<groupId>AGGDEV</groupId>
-        	<artifactId>AGFPromotionsProject</artifactId>
-        	<version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>

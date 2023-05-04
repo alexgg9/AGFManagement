@@ -8,12 +8,12 @@ import model.enums.Genero;
 public class Peleador extends Persona{
 	
 	private int edad;
-	private Genero genero;
+	private String genero;
 	private int peso;
 	private int altura;
 	private String record;
 	private String pais;
-	private Background backgroud;
+	private String background;
 	private List<Evento> Eventos = null; 
 	
 	
@@ -25,12 +25,12 @@ public class Peleador extends Persona{
 		this.altura=0;
 		this.record="";
 		this.pais="";
-		this.backgroud=null;
+		this.background=null;
 
 	}
 
 	public Peleador(String dni,String nombre, String apellidos, int edad, 
-			Genero genero, int peso, int altura, String record, String pais, Background backgroud) {
+			String genero, int peso, int altura, String record, String pais, String background) {
 		super(dni,nombre,apellidos);
 		this.edad = edad;
 		this.genero = genero;
@@ -38,7 +38,7 @@ public class Peleador extends Persona{
 		this.altura = altura;
 		this.record = record;
 		this.pais = pais;
-		this.backgroud = backgroud;
+		this.background = background;
 	}
 	
 	public int getEdad() {
@@ -73,20 +73,24 @@ public class Peleador extends Persona{
 		this.pais = pais;
 	}
 
-	public Genero getGenero() {
+	
+
+	public String getGenero() {
 		return genero;
 	}
 
-	public void setGenero(Genero genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 
-	public Background getBackgroud() {
-		return backgroud;
+	
+
+	public String getBackground() {
+		return background;
 	}
 
-	public void setBackgroud(Background backgroud) {
-		this.backgroud = backgroud;
+	public void setBackground(String background) {
+		this.background = background;
 	}
 
 	public List<Evento> getEventos() {
@@ -100,7 +104,7 @@ public class Peleador extends Persona{
 	@Override
 	public String toString() {
 		return "Peleador ["+super.toString()+"edad=" + edad + ", genero=" + genero + ", peso=" + peso + ", altura=" + altura + ", record="
-				+ record + ", pais=" + pais + ", backgroud=" + backgroud + "]";
+				+ record + ", pais=" + pais + ", backgroud=" + background + "]";
 	}
 	
 	

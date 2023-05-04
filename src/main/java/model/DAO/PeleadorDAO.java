@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.connection.ConnectionMySQL;
-import model.domain.Evento;
 import model.domain.Peleador;
 
-public class PeleadorDAO implements DAO{
+public class PeleadorDAO implements DAO<Peleador>{
 
 	private final static String FINDALL = "SELECT * FROM peleador";
-	private final static String FINDBYID ="SELECT * from peleador WHERE dni=?";
-	private final static String INSERT ="INSERT INTO peleador (dni,nombre,apellidos,edad,genero,peso,altura,record,pais,background) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private final static String UPDATE ="UPDATE peleador SET nombre=?, apellidos=?, peso=?, record=? WHERE dni=?";
-	private final static String DELETE="";
+	private final static String FINDBYID = "SELECT * from peleador WHERE dni=?";
+	private final static String INSERT = "INSERT INTO peleador (dni,nombre,apellidos,edad,genero,peso,altura,record,pais,background) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	private final static String UPDATE = "UPDATE peleador SET nombre=?, apellidos=?, peso=?, record=? WHERE dni=?";
+	private final static String DELETE= "DELETE FROM peleador WHERE dni = ?";
 	
 	private Connection conn;
+	
 	public PeleadorDAO(Connection conn) {
 		this.conn = conn;
 	}
@@ -34,7 +34,7 @@ public class PeleadorDAO implements DAO{
 	}
 
 	public List<Peleador> findAll() throws SQLException {
-		List<Peleador> result = new ArrayList();
+		List<Peleador> result = new ArrayList<Peleador>();
 		try(PreparedStatement pst=this.conn.prepareStatement(FINDALL)){
 			try(ResultSet res = pst.executeQuery()){
 				while(res.next()) {
@@ -46,6 +46,7 @@ public class PeleadorDAO implements DAO{
 					p.setPeso(res.getInt("peso"));
 					p.setAltura(res.getInt("altura"));
 					p.setPais(res.getString("pais"));
+					result.add(p);
 				}
 			}
 		}
@@ -83,12 +84,12 @@ public class PeleadorDAO implements DAO{
 					pst.setString(2, entity.getNombre());
 					pst.setString(3, entity.getApellidos());
 					pst.setInt(4, entity.getEdad());
-					pst.setObject(5, entity.getGenero());
+					pst.setString(5, entity.getGenero());
 					pst.setInt(6, entity.getPeso());
 					pst.setInt(7, entity.getAltura());
 					pst.setString(8, entity.getRecord());
 					pst.setString(9, entity.getPais());
-					pst.setObject(10, entity.getBackgroud());
+					pst.setString(10, entity.getBackground());
 					pst.executeUpdate();
 					
 				}	
@@ -99,14 +100,14 @@ public class PeleadorDAO implements DAO{
 		return result;
 	}
 
-	public void delete(Object entity) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void delete(Peleador entity) throws SQLException {
+		if (entity != null) {
+	        try (PreparedStatement pst = conn.prepareStatement(DELETE)) {
+	            pst.setString(1, entity.getDni());
+	            pst.executeUpdate();
+	        }
+		}
 	}
-	@Override
-	public Object save(Object entity) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	
 }

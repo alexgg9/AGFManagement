@@ -90,20 +90,7 @@ public class PeleadorDAO implements DAO{
 					pst.setObject(10, entity.getBackgroud());
 					pst.executeUpdate();
 					
-					EventoDAO ldao = new EventoDAO(this.conn);
-					List<Evento> eventosanteriores = ldao.findByFighter(entity);
-					
-					for(Evento e : eventosanteriores) {
-						ldao.delete(e);
-					}
-					for(Evento e: entity.getEvento()) {
-						e.setPeleador(entity);
-						ldao.save(e);
-					}
-					
-				}else {
-					if(mi)
-				}
+				}	
 				
 			}
 		}

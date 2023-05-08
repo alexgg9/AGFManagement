@@ -30,8 +30,6 @@ public class Evento {
 	}
 
 
-
-
 	public Evento(int id_evento, String nombre, String recinto, String ciudad, String pais, String modalidad,
 			Date fecha, Peleador f1, Peleador f2, Matchmaker m1) {
 		super();

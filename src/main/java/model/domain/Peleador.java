@@ -8,12 +8,12 @@ import model.enums.Genero;
 public class Peleador extends Persona{
 	
 	private int edad;
-	private String genero;
+	private Genero genero;
 	private int peso;
 	private int altura;
 	private String record;
 	private String pais;
-	private String background;
+	private Background background;
 	private List<Evento> Eventos = null; 
 	
 	
@@ -30,7 +30,7 @@ public class Peleador extends Persona{
 	}
 
 	public Peleador(String dni,String nombre, String apellidos, int edad, 
-			String genero, int peso, int altura, String record, String pais, String background) {
+			Genero genero, int peso, int altura, String record, String pais, Background background) {
 		super(dni,nombre,apellidos);
 		this.edad = edad;
 		this.genero = genero;
@@ -73,23 +73,19 @@ public class Peleador extends Persona{
 		this.pais = pais;
 	}
 
-	
-
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
 
-	
-
-	public String getBackground() {
+	public Background getBackground() {
 		return background;
 	}
 
-	public void setBackground(String background) {
+	public void setBackground(Background background) {
 		this.background = background;
 	}
 

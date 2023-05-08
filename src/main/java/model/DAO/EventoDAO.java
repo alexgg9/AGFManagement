@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.connection.ConnectionMySQL;
 import model.domain.Evento;
+import model.domain.Matchmaker;
 import model.domain.Peleador;
 
 
@@ -17,9 +18,9 @@ public class EventoDAO implements DAO<Evento>{
 	
 	private final static String FINDALL = "SELECT * FROM evento";
 	private final static String FINDBYID = "SELECT * from evento WHERE ID_evento=?";
-	private final static String INSERT = "INSERT INTO evento (ID_evento,nombre,recinto,ciudad,pais,modalidad,fecha) VALUES (?,?,?,?,?,?,?,?,?,?)";
+	private final static String INSERT = "INSERT INTO evento (ID_evento,nombre,recinto,ciudad,pais,modalidad,fecha,dni_peleador1,dni_peleador2,dni_matchmaker) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private final static String UPDATE = "UPDATE evento SET ID_evento=?, nombre=?, recinto=?, ciudad=?, pais=?, modalidad=?, fecha=? WHERE dni=?";
-	private final static String DELETE= "DELETE FROM peleador WHERE ID_evento = ?";
+	private final static String DELETE= "DELETE FROM evento WHERE ID_evento = ?";
 	
 	
 	private Connection conn;
@@ -80,8 +81,11 @@ public class EventoDAO implements DAO<Evento>{
 					PeleadorDAO pdao = new PeleadorDAO(this.conn);
 					Peleador p1 = pdao.findByDni(res.getString("dni_peleador1"));
 					e.setF1(p1);
-					Peleador p2 = pdao.findByDni(res.getString("dni_peleador2"));
-					e.setF1(p2);
+					Peleador p2 = pdao.findByDni(res.getString("dni_peleador1"));
+					e.setF2(p2);
+					MatchmakerDAO mdao = new MatchmakerDAO(this.conn);
+					Matchmaker m1 = mdao.findByDni(res.getString("dni_matchmaker"));
+					e.setM1(m1);
 					result = e;
 				}
 			}
@@ -94,12 +98,7 @@ public class EventoDAO implements DAO<Evento>{
 		Evento result = new Evento();
 		if(entity!=null) {
 			Evento e = findById(entity.getId_evento());
-			PeleadorDAO pdao = new PeleadorDAO(this.conn);
-			Peleador myF = pdao.findByDni(entity.getF1().getDni());
-			Peleador myF2 = pdao.findByDni(entity.getF2().getDni());
 			if(e == null) {
-				if(myF == null && myF2 == null)
-					pdao.save(entity.getF1());
 				try(PreparedStatement pst=this.conn.prepareStatement(INSERT)){
 					pst.setInt(1, entity.getId_evento());
 					pst.setString(2, entity.getNombre());
@@ -110,11 +109,10 @@ public class EventoDAO implements DAO<Evento>{
 					pst.setDate(7, (Date) entity.getFecha());
 					pst.setString(8, entity.getF1().getDni());
 					pst.setString(9, entity.getF2().getDni());
+					pst.setString(10, entity.getM1().getDni());
 					pst.executeUpdate();
 				}
 			}else {
-				if(myF == null && myF2 == null)
-					pdao.save(entity.getF1());
 				try(PreparedStatement pst=this.conn.prepareStatement(UPDATE)){
 					pst.setInt(1, entity.getId_evento());
 					pst.setString(2, entity.getNombre());
@@ -122,7 +120,10 @@ public class EventoDAO implements DAO<Evento>{
 					pst.setString(4, entity.getCiudad());
 					pst.setString(5, entity.getPais());
 					pst.setString(6, entity.getModalidad());
-					pst.setDate(6, (Date) entity.getFecha());
+					pst.setDate(7, (Date) entity.getFecha());
+					pst.setString(8, entity.getF1().getDni());
+					pst.setString(9, entity.getF2().getDni());
+					pst.setString(10, entity.getM1().getDni());
 					pst.executeUpdate();				
 				}
 			}
@@ -134,7 +135,7 @@ public class EventoDAO implements DAO<Evento>{
 	public void delete(Evento entity) throws SQLException {
 		if(entity!=null){
 			try(PreparedStatement pst=this.conn.prepareStatement(DELETE)){
-				pst.setInt(0, entity.getId_evento());
+				pst.setInt(1, entity.getId_evento());
 				pst.executeUpdate();			}
 		}
 		

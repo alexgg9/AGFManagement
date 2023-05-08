@@ -14,6 +14,9 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 	
 	private final static String FINDALL = "SELECT * FROM matchmaker";
 	private final static String FINDBYID = "SELECT * from matchmaker WHERE dni_matchmaker=?";
+	private final static String INSERT = "INSERT INTO matchmaker (dni_matchmaker,nombre,apellidos,promotora) VALUES (?,?,?,?)";
+	private final static String DELETE= "DELETE FROM matchmaker WHERE dni_matchmaker = ?";
+	private final static String UPDATE = "UPDATE matchmaker SET nombre=?, apellidos=?, promotora=? WHERE dni_matchmaker=?";
 	
 	private Connection conn;
 	
@@ -53,12 +56,12 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 	@Override
 	public Matchmaker findByDni(String id) throws SQLException {
 		Matchmaker result = null;
-		try(PreparedStatement pst=this.conn.prepareStatement(FINDALL)){
+		try(PreparedStatement pst=this.conn.prepareStatement(FINDBYID)){
 			pst.setString(1, id);
 			try(ResultSet res = pst.executeQuery()){
 				if(res.next()) {
 					result = new Matchmaker();
-					result.setDni(res.getString("dni"));
+					result.setDni(res.getString("dni_matchmaker"));
 					result.setNombre(res.getString("nombre"));
 					result.setApellidos(res.getString("apellidos"));
 					result.setPromotora(res.getString("promotora"));
@@ -70,13 +73,41 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 
 	@Override
 	public Matchmaker save(Matchmaker entity) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Matchmaker result = new Matchmaker();
+		
+		if(entity!=null) {
+			
+			Matchmaker m = findByDni(entity.getDni());
+			if(m == null) {
+				try(PreparedStatement pst=this.conn.prepareStatement(INSERT)){
+					pst.setString(1, entity.getDni());
+					pst.setString(2, entity.getNombre());
+					pst.setString(3, entity.getApellidos());
+					pst.setString(4, entity.getPromotora());
+					pst.executeUpdate();
+				}
+			}else {
+				
+				try(PreparedStatement pst=this.conn.prepareStatement(UPDATE)){
+					pst.setString(1, entity.getNombre());
+					pst.setString(2, entity.getApellidos());
+					pst.setString(3, entity.getPromotora());
+					pst.setString(4, entity.getDni());
+					pst.executeUpdate();
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public void delete(Matchmaker entity) throws SQLException {
-		// TODO Auto-generated method stub
+		if (entity != null) {
+	        try (PreparedStatement pst = conn.prepareStatement(DELETE)) {
+	            pst.setString(1, entity.getDni());
+	            pst.executeUpdate();
+	        }
+		}
 		
 	}
 

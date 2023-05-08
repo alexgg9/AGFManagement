@@ -12,6 +12,7 @@ import model.connection.ConnectionMySQL;
 import model.domain.Evento;
 import model.domain.Matchmaker;
 import model.domain.Peleador;
+import model.enums.Modalidad;
 
 
 public class EventoDAO implements DAO<Evento>{
@@ -50,7 +51,7 @@ public class EventoDAO implements DAO<Evento>{
 					e.setRecinto(res.getString("recinto"));
 					e.setCiudad(res.getString("ciudad"));
 					e.setPais(res.getString("pais"));
-					e.setModalidad(res.getString("modalidad"));
+					e.setModalidad(Modalidad.valueOf(res.getString("modalidad")));
 					e.setFecha(res.getDate("fecha"));
 					PeleadorDAO pdao = new PeleadorDAO(this.conn);
 					Peleador p1 = pdao.findByDni(res.getString("dni_peleador1"));
@@ -76,7 +77,7 @@ public class EventoDAO implements DAO<Evento>{
 					e.setRecinto(res.getString("recinto"));
 					e.setCiudad(res.getString("ciudad"));
 					e.setPais(res.getString("pais"));
-					e.setModalidad(res.getString("modalidad"));
+					e.setModalidad(Modalidad.valueOf(res.getString("modalidad")));
 					e.setFecha(res.getDate("fecha"));
 					PeleadorDAO pdao = new PeleadorDAO(this.conn);
 					Peleador p1 = pdao.findByDni(res.getString("dni_peleador1"));
@@ -105,7 +106,7 @@ public class EventoDAO implements DAO<Evento>{
 					pst.setString(3, entity.getRecinto());
 					pst.setString(4, entity.getCiudad());
 					pst.setString(5, entity.getPais());
-					pst.setString(6, entity.getModalidad());
+					pst.setString(6, entity.getModalidad().name());
 					pst.setDate(7, (Date) entity.getFecha());
 					pst.setString(8, entity.getF1().getDni());
 					pst.setString(9, entity.getF2().getDni());
@@ -114,16 +115,16 @@ public class EventoDAO implements DAO<Evento>{
 				}
 			}else {
 				try(PreparedStatement pst=this.conn.prepareStatement(UPDATE)){
-					pst.setInt(1, entity.getId_evento());
-					pst.setString(2, entity.getNombre());
-					pst.setString(3, entity.getRecinto());
-					pst.setString(4, entity.getCiudad());
-					pst.setString(5, entity.getPais());
-					pst.setString(6, entity.getModalidad());
-					pst.setDate(7, (Date) entity.getFecha());
-					pst.setString(8, entity.getF1().getDni());
-					pst.setString(9, entity.getF2().getDni());
-					pst.setString(10, entity.getM1().getDni());
+					pst.setString(1, entity.getNombre());
+					pst.setString(2, entity.getRecinto());
+					pst.setString(3, entity.getCiudad());
+					pst.setString(4, entity.getPais());
+					pst.setString(5, entity.getModalidad().name());
+					pst.setDate(6, (Date) entity.getFecha());
+					pst.setString(7, entity.getF1().getDni());
+					pst.setString(8, entity.getF2().getDni());
+					pst.setString(9, entity.getM1().getDni());
+					pst.setInt(10, entity.getId_evento());
 					pst.executeUpdate();				
 				}
 			}

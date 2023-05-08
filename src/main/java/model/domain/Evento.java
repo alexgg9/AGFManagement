@@ -3,13 +3,15 @@ package model.domain;
 import java.util.Date;
 import java.util.List;
 
+import model.enums.Modalidad;
+
 public class Evento {
 	private int id_evento;
 	private String nombre;
 	private String recinto;
 	private String ciudad;
 	private String pais;
-	private String modalidad;
+	private Modalidad modalidad;
 	private Date fecha;
 	private Peleador f1;
 	private Peleador f2;
@@ -22,7 +24,7 @@ public class Evento {
 		this.recinto="";
 		this.ciudad="";
 		this.pais="";
-		this.modalidad="";
+		this.modalidad= null;
 		this.fecha=null;
 		this.f1=null;
 		this.f2=null;
@@ -30,7 +32,7 @@ public class Evento {
 	}
 
 
-	public Evento(int id_evento, String nombre, String recinto, String ciudad, String pais, String modalidad,
+	public Evento(int id_evento, String nombre, String recinto, String ciudad, String pais, Modalidad modalidad,
 			Date fecha, Peleador f1, Peleador f2, Matchmaker m1) {
 		super();
 		this.id_evento = id_evento;
@@ -98,12 +100,12 @@ public class Evento {
 	}
 
 
-	public String getModalidad() {
+	public Modalidad getModalidad() {
 		return modalidad;
 	}
 
 
-	public void setModalidad(String modalidad) {
+	public void setModalidad(Modalidad modalidad) {
 		this.modalidad = modalidad;
 	}
 

@@ -9,6 +9,8 @@ import java.util.List;
 
 import model.connection.ConnectionMySQL;
 import model.domain.Peleador;
+import model.enums.Background;
+import model.enums.Genero;
 
 public class PeleadorDAO implements DAO<Peleador>{
 
@@ -43,9 +45,11 @@ public class PeleadorDAO implements DAO<Peleador>{
 					p.setNombre(res.getString("nombre"));
 					p.setApellidos(res.getString("apellidos"));
 					p.setEdad(res.getInt("edad"));
+					p.setGenero(Genero.valueOf(res.getString("genero")));
 					p.setPeso(res.getInt("peso"));
 					p.setAltura(res.getInt("altura"));
 					p.setPais(res.getString("pais"));
+					p.setBackground(Background.valueOf(res.getString("background")));
 					result.add(p);
 				}
 			}
@@ -64,9 +68,11 @@ public class PeleadorDAO implements DAO<Peleador>{
 					result.setNombre(res.getString("nombre"));
 					result.setApellidos(res.getString("apellidos"));
 					result.setEdad(res.getInt("edad"));
+					result.setGenero(Genero.valueOf(res.getString("genero")));
 					result.setPeso(res.getInt("peso"));
 					result.setAltura(res.getInt("altura"));
 					result.setPais(res.getString("pais"));
+					result.setBackground(Background.valueOf(res.getString("background")));
 				}
 			}
 		}
@@ -84,19 +90,33 @@ public class PeleadorDAO implements DAO<Peleador>{
 					pst.setString(2, entity.getNombre());
 					pst.setString(3, entity.getApellidos());
 					pst.setInt(4, entity.getEdad());
-					pst.setString(5, entity.getGenero());
+					pst.setString(5, entity.getGenero().name());
 					pst.setInt(6, entity.getPeso());
 					pst.setInt(7, entity.getAltura());
 					pst.setString(8, entity.getRecord());
 					pst.setString(9, entity.getPais());
-					pst.setString(10, entity.getBackground());
+					pst.setString(10, entity.getBackground().name());
 					pst.executeUpdate();
 					
 				}	
 				
+			}else {
+				
+				try(PreparedStatement pst=this.conn.prepareStatement(UPDATE)){
+					pst.setString(1, entity.getNombre());
+					pst.setString(2, entity.getApellidos());
+					pst.setInt(3, entity.getEdad());
+					pst.setString(4, entity.getGenero().name());
+					pst.setInt(5, entity.getPeso());
+					pst.setInt(6, entity.getAltura());
+					pst.setString(7, entity.getRecord());
+					pst.setString(8, entity.getPais());
+					pst.setString(9, entity.getBackground().name());
+					pst.setString(10, entity.getDni());
+					pst.executeUpdate();
+				}
 			}
 		}
-		
 		return result;
 	}
 

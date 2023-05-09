@@ -14,9 +14,9 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 	
 	private final static String FINDALL = "SELECT * FROM matchmaker";
 	private final static String FINDBYID = "SELECT * from matchmaker WHERE dni_matchmaker=?";
-	private final static String INSERT = "INSERT INTO matchmaker (dni_matchmaker,nombre,apellidos,promotora) VALUES (?,?,?,?)";
+	private final static String INSERT = "INSERT INTO matchmaker (dni_matchmaker,nombre,apellidos,promotora,usuario,contraseña) VALUES (?,?,?,?,?,?)";
 	private final static String DELETE= "DELETE FROM matchmaker WHERE dni_matchmaker = ?";
-	private final static String UPDATE = "UPDATE matchmaker SET nombre=?, apellidos=?, promotora=? WHERE dni_matchmaker=?";
+	private final static String UPDATE = "UPDATE matchmaker SET nombre=?, apellidos=?, promotora=?, usuario=?, contraseña=? WHERE dni_matchmaker=?";
 	
 	private Connection conn;
 	
@@ -45,6 +45,7 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 					m.setNombre(res.getString("nombre"));
 					m.setApellidos(res.getString("apellidos"));
 					m.setPromotora(res.getString("promotora"));
+					m.setUsuario(res.getString("usuario"));
 					result.add(m);
 				}
 			}
@@ -65,6 +66,7 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 					result.setNombre(res.getString("nombre"));
 					result.setApellidos(res.getString("apellidos"));
 					result.setPromotora(res.getString("promotora"));
+					result.setUsuario(res.getString("usuario"));
 				}
 			}
 		}
@@ -84,6 +86,8 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 					pst.setString(2, entity.getNombre());
 					pst.setString(3, entity.getApellidos());
 					pst.setString(4, entity.getPromotora());
+					pst.setString(5, entity.getUsuario());
+					pst.setString(6, entity.getPassword());
 					pst.executeUpdate();
 				}
 			}else {
@@ -92,7 +96,9 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 					pst.setString(1, entity.getNombre());
 					pst.setString(2, entity.getApellidos());
 					pst.setString(3, entity.getPromotora());
-					pst.setString(4, entity.getDni());
+					pst.setString(4, entity.getUsuario());
+					pst.setString(5, entity.getPassword());
+					pst.setString(6, entity.getDni());
 					pst.executeUpdate();
 				}
 			}

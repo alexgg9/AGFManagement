@@ -21,7 +21,7 @@ public class Login {
 	
 	
 	@FXML
-	private void login() throws SQLException {
+	private void login() throws SQLException, IOException {
 		
 		String usuario = tfUser.getText().trim();
 		String contraseña = tfPass.getText().trim();
@@ -41,6 +41,7 @@ public class Login {
 			    alerta.setHeaderText("Login exitoso");
 			    alerta.setContentText("Se ha logeago el Matchmaker correctamente.");
 			    alerta.showAndWait();
+			    switchToUserPage();
 			}else {
 				Alert alerta = new Alert(AlertType.INFORMATION);
 			    alerta.setTitle("Login");
@@ -54,7 +55,10 @@ public class Login {
 	}
 	
 	
-	
+	@FXML
+    private void switchToUserPage() throws IOException {
+        App.setRoot("MatchmakerPage");
+    }
     @FXML
     private void switchToRegister() throws IOException {
         App.setRoot("register");

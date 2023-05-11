@@ -12,7 +12,7 @@ import model.domain.Matchmaker;
 
 public class MatchmakerDAO implements DAO<Matchmaker>{
 	
-	private final static String FINDALL = "SELECT * FROM matchmaker";
+	private final static String FINDALL = "SELECT * FROM matchmaker LIMIT 15";
 	private final static String FINDBYID = "SELECT * from matchmaker WHERE dni_matchmaker=?";
 	private final static String INSERT = "INSERT INTO matchmaker (dni_matchmaker,nombre,apellidos,promotora,usuario,contraseña) VALUES (?,?,?,?,?,?)";
 	private final static String DELETE= "DELETE FROM matchmaker WHERE dni_matchmaker = ?";

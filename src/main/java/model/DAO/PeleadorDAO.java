@@ -31,7 +31,7 @@ public class PeleadorDAO implements DAO<Peleador>{
 
 	
 	public void close() throws Exception {
-		// TODO Auto-generated method stub
+		conn.close();
 		
 	}
 

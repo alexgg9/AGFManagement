@@ -35,7 +35,7 @@ public class EventoDAO implements DAO<Evento>{
 	
 	@Override
 	public void close() throws Exception {
-		// TODO Auto-generated method stub
+		conn.close();
 		
 	}
 

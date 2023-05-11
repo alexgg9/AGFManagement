@@ -30,7 +30,7 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 	
 	@Override
 	public void close() throws Exception {
-		// TODO Auto-generated method stub
+		conn.close();
 		
 	}
 
@@ -117,6 +117,16 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		
 	}
 
-	
+	public boolean checkLogin(String usuario, String password) throws SQLException {
+		String query = "SELECT COUNT(*) FROM matchmaker WHERE usuario = ? AND contraseña = ?";
+		try (PreparedStatement pst = conn.prepareStatement(query)) {
+		pst.setString(1, usuario);
+		pst.setString(2, password);
+		ResultSet rs = pst.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		return count == 1;
+		}
+		}
 
 }

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AGFPromotions.ManagementFights.ControllerMatchmaker">
    <children>
       <AnchorPane prefHeight="422.0" prefWidth="286.0" style="-fx-background-color: white;">
          <children>
@@ -27,7 +27,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="422.0" prefWidth="467.0" style="-fx-background-color: #D20A0A;">
+      <AnchorPane prefHeight="472.0" prefWidth="442.0" style="-fx-background-color: #D20A0A;">
          <children>
             <Label layoutX="46.0" layoutY="165.0" prefHeight="39.0" prefWidth="110.0" text="Apellidos">
                <font>
@@ -39,14 +39,14 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="164.0" layoutY="172.0" />
-            <PasswordField layoutX="164.0" layoutY="296.0" />
+            <TextField fx:id="tfApellidos" layoutX="164.0" layoutY="172.0" />
+            <PasswordField fx:id="tfPass" layoutX="164.0" layoutY="296.0" />
             <Label alignment="CENTER" layoutX="52.0" layoutY="14.0" prefHeight="39.0" prefWidth="255.0" text="MATCHMAKER REGISTRATION">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="90.0" layoutY="347.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="166.0" style="-fx-background-color: black;" text="Registrarme" textFill="WHITE">
+            <Button layoutX="90.0" layoutY="347.0" mnemonicParsing="false" onAction="#btRegistrar" prefHeight="16.0" prefWidth="166.0" style="-fx-background-color: black;" text="Registrarme" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -58,25 +58,25 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="164.0" layoutY="133.0" />
+            <TextField fx:id="tfNombre" layoutX="164.0" layoutY="133.0" />
             <Label layoutX="47.0" layoutY="87.0" prefHeight="39.0" prefWidth="110.0" text=" DNI">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="165.0" layoutY="94.0" />
+            <TextField fx:id="tfDni" layoutX="165.0" layoutY="94.0" />
             <Label layoutX="45.0" layoutY="204.0" prefHeight="39.0" prefWidth="110.0" text="Promotora">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="163.0" layoutY="211.0" prefHeight="14.0" prefWidth="150.0" />
+            <TextField fx:id="tfPromotora" layoutX="163.0" layoutY="211.0" prefHeight="14.0" prefWidth="150.0" />
             <Label layoutX="46.0" layoutY="250.0" prefHeight="39.0" prefWidth="110.0" text="Usuario">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="164.0" layoutY="257.0" prefHeight="14.0" prefWidth="150.0" />
+            <TextField fx:id="tfUsuario" layoutX="164.0" layoutY="257.0" prefHeight="14.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>

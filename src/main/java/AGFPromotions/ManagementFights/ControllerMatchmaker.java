@@ -1,41 +1,63 @@
 package AGFPromotions.ManagementFights;
 
 
-import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
-
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
-import model.DAO.MatchmakerDAO;
+import javafx.scene.control.Alert.AlertType;
 import model.domain.Matchmaker;
 import utils.Utils;
-
+import model.DAO.MatchmakerDAO;
 
 public class ControllerMatchmaker {
-	
-	
-	@FXML
-	private TextField tfDni,tfNombre, tfApellidos, tfPromotora, tfUsuario;
-	@FXML
-	private PasswordField tfPass;
 
-	
-	
-	MatchmakerDAO matchmakerDAO = new MatchmakerDAO();
-	
-	@FXML
-	public void btRegistrar() {
-		addMatchmaker();
+    @FXML
+    private TextField tfDni,tfNombre, tfApellidos, tfPromotora, tfUsuario;
+    @FXML
+    private PasswordField tfPass;
+    @FXML
+    private TableView tableview;
+    
+    @FXML
+    private TableColumn<Matchmaker, String> colDni;
+
+    @FXML
+    private TableColumn<Matchmaker, String> colNombre;
+
+    @FXML
+    private TableColumn<Matchmaker, String> colApellidos;
+
+    @FXML
+    private TableColumn<Matchmaker, String> colPromotora;
+
+    @FXML
+    private TableColumn<Matchmaker, String> colUsuario;
+    
+    MatchmakerDAO mDAO = new MatchmakerDAO();
+    
+    private ObservableList<Matchmaker> matchmakers;
+    
+    @FXML
+	public void btUpdate() {
+		update();
 	}
-	
-	@FXML
-	private void addMatchmaker() {
-		App a = new App();
+    @FXML
+	public void btAll() throws SQLException {
+		getAll();
+	}
+    
+    @FXML
+    private void update() {
+    	App a = new App();
 		String dni = tfDni.getText();
 		String nombre = tfNombre.getText();
 		String apellidos = tfApellidos.getText();
@@ -46,22 +68,40 @@ public class ControllerMatchmaker {
 		
 		Matchmaker nMatchmaker = new Matchmaker(dni,nombre,apellidos,promotora,usuario,contraseña);
 		try {
-			matchmakerDAO.save(nMatchmaker);
+			mDAO.save(nMatchmaker);
 			Alert alerta = new Alert(AlertType.INFORMATION);
-		    alerta.setTitle("Registro de Matchmaker");
-		    alerta.setHeaderText("Registro exitoso");
-		    alerta.setContentText("Se ha registrado el Matchmaker correctamente.");
+		    alerta.setTitle("Actualización");
+		    alerta.setHeaderText("Actualización exitosa");
+		    alerta.setContentText("Se ha actualizado el Matchmaker correctamente.");
 		    alerta.showAndWait();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
 		}
-		
-		
-	}
-	
+    }
+    
     @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("login");
+    private void getAll() throws SQLException {
+    	List<Matchmaker> matchmakers = mDAO.findAll();
+    	if(tableview.getItems().isEmpty()) {
+    		
+        	colDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
+        	
+   
+        	colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        	
+        	colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getApellidos()));
+        	
+
+        	colPromotora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPromotora()));
+        	
+
+        	colUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsuario()));
+        	
+        	tableview.getColumns().addAll(colNombre, colNombre,colPromotora,colUsuario);
+    	}else {
+    		tableview.getItems().clear();
+    	}
+    	
     }
 }

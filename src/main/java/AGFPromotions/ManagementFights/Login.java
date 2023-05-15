@@ -57,7 +57,7 @@ public class Login {
 	
 	@FXML
     private void switchToUserPage() throws IOException {
-        App.setRoot("MatchmakerPage");
+        App.setRoot("matchmakerPage");
     }
     @FXML
     private void switchToRegister() throws IOException {

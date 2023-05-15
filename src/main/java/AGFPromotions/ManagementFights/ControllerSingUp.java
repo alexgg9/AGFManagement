@@ -63,8 +63,12 @@ public class ControllerSingUp {
 	
 	
 	
-    @FXML
-    private void closeSesion() throws IOException {
-        App.setRoot("login");
-    }
+	@FXML
+	private void closeSesion() {
+	    try {
+	        App.setRoot("login");
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 }

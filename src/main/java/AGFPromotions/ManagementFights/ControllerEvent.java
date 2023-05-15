@@ -3,7 +3,7 @@ package AGFPromotions.ManagementFights;
 import java.io.IOException;
 import javafx.fxml.FXML;
 
-public class Controller3 {
+public class ControllerEvent {
 
     @FXML
     private void switchToPrimary() throws IOException {

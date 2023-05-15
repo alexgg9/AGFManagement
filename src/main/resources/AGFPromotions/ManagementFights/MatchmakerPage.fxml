@@ -32,7 +32,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="647.0" layoutY="398.0" mnemonicParsing="false" onAction="#btUpdate" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Actualizar" textFill="WHITE">
+            <Button layoutX="697.0" layoutY="397.0" mnemonicParsing="false" onAction="#btUpdate" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: black;" text="Actualizar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -63,17 +63,17 @@
                </font>
             </Label>
             <TextField fx:id="tfUsuario" layoutX="696.0" layoutY="290.0" prefHeight="14.0" prefWidth="150.0" />
-            <Button layoutX="356.0" layoutY="398.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
+            <Button layoutX="809.0" layoutY="397.0" mnemonicParsing="false" onAction="#deleteSelected" prefHeight="37.0" prefWidth="102.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="218.0" layoutY="398.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
+            <Button layoutX="280.0" layoutY="398.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Refrescar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="78.0" layoutY="398.0" mnemonicParsing="false" onAction="#btAll" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Todos" textFill="WHITE">
+            <Button layoutX="102.0" layoutY="398.0" mnemonicParsing="false" onAction="#btAll" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Todos" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -88,6 +88,11 @@
               </columns>
             </TableView>
             <Button layoutX="95.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToFighterPage" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Peleadores" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="586.0" layoutY="397.0" mnemonicParsing="false" onAction="#btAdd" prefHeight="37.0" prefWidth="96.0" style="-fx-background-color: black;" text="Añadir" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

@@ -19,7 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
     	primaryStage = stage;
-        scene = new Scene(loadFXML("login"), 640, 480);
+        scene = new Scene(loadFXML("login"), 640, 460);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -38,7 +38,7 @@ public class App extends Application {
         Scene newScene;
         
            if (fxml.equals("login")) {
-               newScene = createScene(fxml, 640, 480);
+               newScene = createScene(fxml, 640, 460);
                primaryStage.setResizable(false);
                
            }else if(fxml.equals("matchmakerPage")){
@@ -54,7 +54,7 @@ public class App extends Application {
               primaryStage.setResizable(true);
          }
            primaryStage.setScene(newScene);
-           scene.setRoot(p);
+           App.scene.setRoot(p);
            
 
    }

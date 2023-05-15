@@ -45,6 +45,15 @@ public class ControllerSingUp {
 		String contraseña = tfPass.getText();
 		contraseña = Utils.encryptSHA256(contraseña);
 		
+		if (dni.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || promotora.isEmpty() || usuario.isEmpty() || contraseña.isEmpty()) {
+	        Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Error");
+	        alert.setHeaderText("Campos vacíos");
+	        alert.setContentText("Por favor, complete todos los campos.");
+	        alert.showAndWait();
+	        return; 
+	    }
+		
 		Matchmaker nMatchmaker = new Matchmaker(dni,nombre,apellidos,promotora,usuario,contraseña);
 		try {
 			matchmakerDAO.save(nMatchmaker);

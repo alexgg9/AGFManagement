@@ -1,6 +1,7 @@
 package AGFPromotions.ManagementFights;
 
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -74,6 +75,7 @@ public class ControllerMatchmaker {
 		    alerta.setHeaderText("Actualización exitosa");
 		    alerta.setContentText("Se ha actualizado el Matchmaker correctamente.");
 		    alerta.showAndWait();
+		    getAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
@@ -87,21 +89,24 @@ public class ControllerMatchmaker {
     		
         	colDni.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDni()));
         	
-   
         	colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         	
-        	colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getApellidos()));
-        	
-
+        	colApellidos.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getApellidos()));
+        
         	colPromotora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPromotora()));
         	
-
         	colUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsuario()));
         	
-        	tableview.getColumns().addAll(colNombre, colNombre,colPromotora,colUsuario);
+        	tableview.setItems(FXCollections.observableArrayList(matchmakers));
     	}else {
-    		tableview.getItems().clear();
+    		tableview.getItems().isEmpty();
     	}
     	
+    }
+    
+    
+    @FXML
+    private void switchToFighterPage() throws IOException {
+        App.setRoot("fighterPage");
     }
 }

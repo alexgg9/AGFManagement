@@ -1,5 +1,6 @@
 package model.domain;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import model.enums.Background;

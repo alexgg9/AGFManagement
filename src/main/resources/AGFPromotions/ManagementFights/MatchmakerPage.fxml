@@ -87,7 +87,7 @@
                   <TableColumn fx:id="colUsuario" prefWidth="75.0" text="Usuario" />
               </columns>
             </TableView>
-            <Button layoutX="95.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToFighterPage" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Peleadores" textFill="WHITE">
+            <Button layoutX="799.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: black;" text="Volver" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

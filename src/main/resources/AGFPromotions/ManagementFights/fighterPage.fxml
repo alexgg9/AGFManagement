@@ -4,109 +4,125 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="1234.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AGFPromotions.ManagementFights.ControllerFighter">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="1294.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AGFPromotions.ManagementFights.ControllerFighter">
    <children>
-      <AnchorPane prefHeight="537.0" prefWidth="1200.0" style="-fx-background-color: white;">
+      <AnchorPane prefHeight="496.0" prefWidth="1294.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="489.0" layoutY="152.0" prefHeight="39.0" prefWidth="110.0" text="Apellidos" AnchorPane.leftAnchor="489.0">
+            <Label layoutX="796.0" layoutY="150.0" prefHeight="39.0" prefWidth="110.0" text="Apellidos" AnchorPane.leftAnchor="796.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="728.0" layoutY="197.0" prefHeight="39.0" prefWidth="110.0" text="Peso">
+            <Label layoutX="1035.0" layoutY="195.0" prefHeight="39.0" prefWidth="110.0" text="Peso">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfApellidos" layoutX="566.0" layoutY="159.0" AnchorPane.leftAnchor="563.0" />
+            <TextField fx:id="tfApellidos" layoutX="870.0" layoutY="157.0" AnchorPane.leftAnchor="870.0" />
             <Label alignment="CENTER" layoutX="341.0" layoutY="23.0" prefHeight="39.0" prefWidth="255.0" text="FIGHTER PAGE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="734.0" layoutY="416.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Actualizar" textFill="WHITE">
+            <Button layoutX="1036.0" layoutY="406.0" mnemonicParsing="false" onAction="#btUpdate" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Actualizar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Separator layoutX="10.0" layoutY="83.0" prefHeight="3.0" prefWidth="938.0" />
-            <Separator layoutX="1.0" layoutY="462.0" prefHeight="0.0" prefWidth="948.0" />
-            <Label layoutX="728.0" layoutY="99.0" prefHeight="39.0" prefWidth="110.0" text="Nombre">
+            <Separator layoutX="10.0" layoutY="83.0" prefHeight="10.0" prefWidth="1285.0" />
+            <Separator layoutX="1.0" layoutY="462.0" prefHeight="3.0" prefWidth="1294.0" />
+            <Label layoutX="1035.0" layoutY="97.0" prefHeight="39.0" prefWidth="110.0" text="Nombre">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfNombre" layoutX="795.0" layoutY="106.0" AnchorPane.leftAnchor="794.0" />
-            <Label layoutX="489.0" layoutY="99.0" prefHeight="39.0" prefWidth="110.0" text=" DNI" AnchorPane.leftAnchor="489.0">
+            <TextField fx:id="tfNombre" layoutX="1101.0" layoutY="104.0" AnchorPane.leftAnchor="1101.0" />
+            <Label layoutX="796.0" layoutY="97.0" prefHeight="39.0" prefWidth="110.0" text=" DNI" AnchorPane.leftAnchor="796.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfDni" layoutX="564.0" layoutY="106.0" AnchorPane.leftAnchor="563.0" />
-            <Label layoutX="728.0" layoutY="152.0" prefHeight="39.0" prefWidth="110.0" text="Edad">
+            <TextField fx:id="tfDni" layoutX="870.0" layoutY="104.0" AnchorPane.leftAnchor="870.0" />
+            <Label layoutX="1035.0" layoutY="150.0" prefHeight="39.0" prefWidth="110.0" text="Edad">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfEdad" layoutX="794.0" layoutY="159.0" prefHeight="14.0" prefWidth="150.0" AnchorPane.leftAnchor="794.0" />
-            <Label layoutX="489.0" layoutY="197.0" prefHeight="39.0" prefWidth="110.0" text="Género" AnchorPane.leftAnchor="489.0">
+            <TextField fx:id="tfEdad" layoutX="1101.0" layoutY="157.0" prefHeight="14.0" prefWidth="150.0" AnchorPane.leftAnchor="1101.0" />
+            <Label layoutX="796.0" layoutY="195.0" prefHeight="39.0" prefWidth="110.0" text="Género" AnchorPane.leftAnchor="796.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="352.0" layoutY="416.0" mnemonicParsing="false" onAction="#btEliminar" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
+            <Button layoutX="459.0" layoutY="406.0" mnemonicParsing="false" onAction="#deleteSelected" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Eliminar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="218.0" layoutY="416.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
+            <Button layoutX="325.0" layoutY="406.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Buscar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="78.0" layoutY="416.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Todos" textFill="WHITE">
+            <Button layoutX="185.0" layoutY="406.0" mnemonicParsing="false" onAction="#btAll" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Todos" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <TableView fx:id="tvFighters" layoutX="14.0" layoutY="112.0" prefHeight="235.0" prefWidth="462.0" />
-            <Label layoutX="484.0" layoutY="248.0" prefHeight="39.0" prefWidth="110.0" text="Record" AnchorPane.leftAnchor="489.0">
+            <TableView fx:id="tvFighters" layoutX="112.0" layoutY="110.0" prefHeight="235.0" prefWidth="604.0">
+               <columns>
+                  <TableColumn fx:id="colDni" prefWidth="75.0" text="Dni" />
+                  <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+                  <TableColumn fx:id="colApellidos" prefWidth="75.0" text="Apellidos" />
+                  <TableColumn fx:id="colGenero" prefWidth="75.0" text="Genero" />
+                  <TableColumn fx:id="colPeso" prefWidth="75.0" text="Peso" />
+                  <TableColumn fx:id="colAltura" prefWidth="75.0" text="Altura" />
+                  <TableColumn fx:id="colRecord" prefWidth="75.0" text="Record" />
+                  <TableColumn fx:id="colBackground" prefWidth="75.0" text="Background" />
+               </columns></TableView>
+            <Label layoutX="796.0" layoutY="246.0" prefHeight="39.0" prefWidth="110.0" text="Record" AnchorPane.leftAnchor="796.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="727.0" layoutY="236.0" prefHeight="39.0" prefWidth="110.0" text="País">
+            <Label layoutX="1034.0" layoutY="234.0" prefHeight="39.0" prefWidth="110.0" text="País">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cbGenero" layoutX="563.0" layoutY="204.0" prefWidth="150.0" AnchorPane.leftAnchor="563.0" />
-            <Button layoutX="580.0" layoutY="416.0" mnemonicParsing="false" onAction="#btRegistrar" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Insertar" textFill="WHITE">
+            <ComboBox fx:id="cbGenero" layoutX="870.0" layoutY="202.0" prefWidth="150.0" AnchorPane.leftAnchor="870.0" />
+            <Button layoutX="882.0" layoutY="406.0" mnemonicParsing="false" onAction="#btRegistrar" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Insertar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Label layoutX="484.0" layoutY="301.0" prefHeight="39.0" prefWidth="110.0" text="Background" AnchorPane.leftAnchor="489.0">
+            <Label layoutX="796.0" layoutY="299.0" prefHeight="39.0" prefWidth="110.0" text="Background" AnchorPane.leftAnchor="796.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cbBackground" layoutX="577.0" layoutY="308.0" prefWidth="150.0" />
-            <Label layoutX="727.0" layoutY="275.0" prefHeight="39.0" prefWidth="110.0" text="Altura">
+            <ComboBox fx:id="cbBackground" layoutX="884.0" layoutY="306.0" prefWidth="150.0" />
+            <Label layoutX="1034.0" layoutY="273.0" prefHeight="39.0" prefWidth="110.0" text="Altura">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tfPeso" layoutX="795.0" layoutY="204.0" />
-            <TextField fx:id="tfPais" layoutX="794.0" layoutY="243.0" />
-            <TextField fx:id="tfAltura" layoutX="795.0" layoutY="282.0" />
-            <TextField fx:id="tfRecord" layoutX="563.0" layoutY="255.0" />
+            <TextField fx:id="tfPeso" layoutX="1102.0" layoutY="202.0" />
+            <TextField fx:id="tfPais" layoutX="1101.0" layoutY="241.0" />
+            <TextField fx:id="tfAltura" layoutX="1102.0" layoutY="280.0" />
+            <TextField fx:id="tfRecord" layoutX="870.0" layoutY="253.0" />
+            <Button layoutX="1050.0" layoutY="30.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: black;" text="Volver" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

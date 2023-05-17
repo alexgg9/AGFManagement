@@ -49,6 +49,7 @@ public class PeleadorDAO implements DAO<Peleador>{
 					p.setPeso(res.getInt("peso"));
 					p.setAltura(res.getInt("altura"));
 					p.setPais(res.getString("pais"));
+					p.setRecord(res.getString("record"));
 					p.setBackground(Background.valueOf(res.getString("background")));
 					result.add(p);
 				}

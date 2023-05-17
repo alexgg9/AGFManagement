@@ -111,6 +111,7 @@ public class ControllerEvent {
                 Date fechaSql = (Date) selectedE.getFecha();
                 LocalDate localDate = fechaSql.toLocalDate();
                 dtFecha.setValue(localDate);
+
                 
 				try {
 					Peleador peleador1 = peleadorDAO.findByDni(selectedE.getF1().getDni());
@@ -178,6 +179,34 @@ public class ControllerEvent {
 			tvEvents.getItems().clear();
 		}
 	}
+    
+    
+    @FXML
+    private void addEvent() {
+    	int id = Integer.parseInt(tfId.getText());
+    	String nombre = tfNombre.getText();    
+    	String recinto = tfRecinto.getText();    
+    	String ciudad = tfCiudad.getText();
+    	String pais = tfPais.getText();
+    	LocalDate localDate = dtFecha.getValue();
+    	ZoneId defaultZoneId = ZoneId.systemDefault();
+    	Date fecha = (Date) Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+    	Peleador peleador1 = cbPeleador1.getValue();
+    	Peleador peleador2 = cbPeleador2.getValue();
+    	Matchmaker matchmaker = null;
+    	
+    	
+    	if (nombre.isEmpty() || recinto.isEmpty() || pais.isEmpty() || ciudad.isEmpty()) {
+	        Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Error");
+	        alert.setHeaderText("Campos vacíos");
+	        alert.setContentText("Por favor, complete todos los campos.");
+	        alert.showAndWait();
+	        return;
+		}
+    	
+    	Evento nEvento = new Evento (id,nombre,recinto,ciudad,pais,fecha,peleador1,peleador2,matchmaker);    	
+    }
     
     @FXML
     private void deleteSelected() {

@@ -85,7 +85,7 @@ public class ControllerFighter {
 	
 	@FXML
 	private void save() {
-		App a = new App();
+
 		String dni = tfDni.getText();
 		String nombre = tfNombre.getText();
 		String apellidos = tfApellidos.getText();

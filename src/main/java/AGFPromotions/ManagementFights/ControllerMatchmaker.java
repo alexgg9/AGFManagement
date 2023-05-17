@@ -111,7 +111,7 @@ public class ControllerMatchmaker {
         	
         	colUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsuario()));
         	
-        	//tableview.setItems(FXCollections.observableArrayList(matchmakers));
+        	
         	
         	tableview.getItems().addAll(matchmakers);
     	}else {
@@ -122,14 +122,11 @@ public class ControllerMatchmaker {
     
     @FXML
     private void deleteSelected() {
-        // Get the selected item from the TableView
         Matchmaker selectedMatchmaker = (Matchmaker) tableview.getSelectionModel().getSelectedItem();
         
         if (selectedMatchmaker != null) {
-            // Remove the selected item from the TableView
             tableview.getItems().remove(selectedMatchmaker);
-            
-            // Delete the selected matchmaker from the data source
+
             try {
 				mDAO.delete(selectedMatchmaker);
 				Alert alerta = new Alert(AlertType.INFORMATION);
@@ -174,7 +171,7 @@ public class ControllerMatchmaker {
     }
     
     @FXML
-    private void switchToFighterPage() throws IOException {
-        App.setRoot("fighterPage");
+    private void switchToMenu() throws IOException {
+        App.setRoot("menu");
     }
 }

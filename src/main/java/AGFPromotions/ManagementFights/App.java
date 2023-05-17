@@ -46,9 +46,17 @@ public class App extends Application {
                primaryStage.setResizable(false);
                
            }else if(fxml.equals("fighterPage")){
-               newScene = createScene(fxml, 950, 500);
+               newScene = createScene(fxml, 1294, 500);
                primaryStage.setResizable(false);
                
+          }else if(fxml.equals("eventPage")){
+              newScene = createScene(fxml, 1450, 500);
+              primaryStage.setResizable(false);
+              
+          }else if(fxml.equals("menu")){
+              newScene = createScene(fxml, 794, 527);
+              primaryStage.setResizable(false);
+          
           }else {
               newScene = createScene(fxml, 640, 480);
               primaryStage.setResizable(true);

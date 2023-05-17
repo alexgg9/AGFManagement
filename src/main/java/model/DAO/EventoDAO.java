@@ -56,8 +56,8 @@ public class EventoDAO implements DAO<Evento>{
 					PeleadorDAO pdao = new PeleadorDAO(this.conn);
 					Peleador p1 = pdao.findByDni(res.getString("dni_peleador1"));
 					e.setF1(p1);
-					Peleador p2 = pdao.findByDni(res.getString("dni_peleador1"));
-					e.setF1(p2);
+					Peleador p2 = pdao.findByDni(res.getString("dni_peleador2"));
+					e.setF2(p2);
 					result.add(e);
 				}
 			}
@@ -82,7 +82,7 @@ public class EventoDAO implements DAO<Evento>{
 					PeleadorDAO pdao = new PeleadorDAO(this.conn);
 					Peleador p1 = pdao.findByDni(res.getString("dni_peleador1"));
 					e.setF1(p1);
-					Peleador p2 = pdao.findByDni(res.getString("dni_peleador1"));
+					Peleador p2 = pdao.findByDni(res.getString("dni_peleador2"));
 					e.setF2(p2);
 					MatchmakerDAO mdao = new MatchmakerDAO(this.conn);
 					Matchmaker m1 = mdao.findByDni(res.getString("dni_matchmaker"));
@@ -146,6 +146,7 @@ public class EventoDAO implements DAO<Evento>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	
 
 }

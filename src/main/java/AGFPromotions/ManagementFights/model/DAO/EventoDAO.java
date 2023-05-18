@@ -19,7 +19,7 @@ public class EventoDAO implements DAO<Evento>{
 	
 	private final static String FINDALL = "SELECT * FROM evento";
 	private final static String FINDBYID = "SELECT * from evento WHERE ID_evento=?";
-	private final static String INSERT = "INSERT INTO evento (ID_evento,nombre,recinto,ciudad,pais,modalidad,fecha,dni_peleador1,dni_peleador2,dni_matchmaker) VALUES (?,?,?,?,?,?,?,?,?)";
+	private final static String INSERT = "INSERT INTO evento (ID_evento,nombre,recinto,ciudad,pais,modalidad,fecha,dni_peleador1,dni_peleador2,dni_matchmaker) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private final static String UPDATE = "UPDATE evento SET nombre=?, recinto=?, ciudad=?, pais=?, modalidad=?, fecha=?, dni_peleador1=? , dni_peleador2=?  WHERE ID_evento=?";
 	private final static String DELETE= "DELETE FROM evento WHERE ID_evento = ?";
 	

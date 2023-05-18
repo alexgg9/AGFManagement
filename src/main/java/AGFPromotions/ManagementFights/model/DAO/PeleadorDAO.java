@@ -18,7 +18,7 @@ public class PeleadorDAO implements DAO<Peleador>{
 	private final static String FINDALL = "SELECT * FROM peleador";
 	private final static String FINDBYID = "SELECT * from peleador WHERE dni=?";
 	private final static String INSERT = "INSERT INTO peleador (dni,nombre,apellidos,edad,genero,peso,altura,record,pais,background) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private final static String UPDATE = "UPDATE peleador SET nombre=?, apellidos=?, peso=?, record=? WHERE dni=?";
+	private final static String UPDATE = "UPDATE peleador SET nombre=?,apellidos=?,edad=?,genero=?,peso=?,altura=?,record=?,pais=?,background=? WHERE dni=?";
 	private final static String DELETE= "DELETE FROM peleador WHERE dni = ?";
 	
 	private Connection conn;

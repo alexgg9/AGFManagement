@@ -1,4 +1,4 @@
-package utils;
+package AGFPromotions.ManagementFights.utils;
 
 import java.security.MessageDigest;
 import java.text.ParseException;

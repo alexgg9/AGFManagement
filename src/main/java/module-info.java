@@ -1,11 +1,11 @@
 module ManagementFights {
 	exports AGFPromotions.ManagementFights;
-	exports model.enums;
+	exports AGFPromotions.ManagementFights.model.enums;
 	exports model.connection;
-	exports test;
-	exports utils;
-	exports model.domain;
-	exports model.DAO;
+	exports AGFPromotions.ManagementFights.test;
+	exports AGFPromotions.ManagementFights.utils;
+	exports AGFPromotions.ManagementFights.model.domain;
+	exports AGFPromotions.ManagementFights.model.DAO;
 
 	requires java.sql;
 	requires java.xml;

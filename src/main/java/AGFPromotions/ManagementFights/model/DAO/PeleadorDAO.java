@@ -1,4 +1,4 @@
-package model.DAO;
+package AGFPromotions.ManagementFights.model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import AGFPromotions.ManagementFights.model.domain.Peleador;
+import AGFPromotions.ManagementFights.model.enums.Background;
+import AGFPromotions.ManagementFights.model.enums.Genero;
 import model.connection.ConnectionMySQL;
-import model.domain.Peleador;
-import model.enums.Background;
-import model.enums.Genero;
 
 public class PeleadorDAO implements DAO<Peleador>{
 

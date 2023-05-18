@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import AGFPromotions.ManagementFights.model.DAO.PeleadorDAO;
+import AGFPromotions.ManagementFights.model.domain.Matchmaker;
+import AGFPromotions.ManagementFights.model.domain.Peleador;
+import AGFPromotions.ManagementFights.model.enums.Background;
+import AGFPromotions.ManagementFights.model.enums.Genero;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -17,11 +22,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import model.domain.Matchmaker;
-import model.domain.Peleador;
-import model.enums.Genero;
-import model.enums.Background;
-import model.DAO.PeleadorDAO;
 
 public class ControllerFighter {
 	

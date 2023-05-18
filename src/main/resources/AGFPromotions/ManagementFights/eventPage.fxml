@@ -111,7 +111,7 @@
                </font>
             </Label>
             <ComboBox fx:id="cbPeleador2" layoutX="1278.0" layoutY="303.0" prefWidth="150.0" />
-            <Button layoutX="1013.0" layoutY="394.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Crear" textFill="WHITE">
+            <Button layoutX="1013.0" layoutY="394.0" mnemonicParsing="false" onAction="#btaddEvent" prefHeight="26.0" prefWidth="122.0" style="-fx-background-color: black;" text="Crear" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

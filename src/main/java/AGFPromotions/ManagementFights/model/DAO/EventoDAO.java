@@ -1,4 +1,4 @@
-package model.DAO;
+package AGFPromotions.ManagementFights.model.DAO;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import AGFPromotions.ManagementFights.model.domain.Evento;
+import AGFPromotions.ManagementFights.model.domain.Matchmaker;
+import AGFPromotions.ManagementFights.model.domain.Peleador;
+import AGFPromotions.ManagementFights.model.enums.Modalidad;
 import model.connection.ConnectionMySQL;
-import model.domain.Evento;
-import model.domain.Matchmaker;
-import model.domain.Peleador;
-import model.enums.Modalidad;
 
 
 public class EventoDAO implements DAO<Evento>{
@@ -20,7 +20,7 @@ public class EventoDAO implements DAO<Evento>{
 	private final static String FINDALL = "SELECT * FROM evento";
 	private final static String FINDBYID = "SELECT * from evento WHERE ID_evento=?";
 	private final static String INSERT = "INSERT INTO evento (ID_evento,nombre,recinto,ciudad,pais,modalidad,fecha,dni_peleador1,dni_peleador2,dni_matchmaker) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private final static String UPDATE = "UPDATE evento SET ID_evento=?, nombre=?, recinto=?, ciudad=?, pais=?, modalidad=?, fecha=? WHERE dni=?";
+	private final static String UPDATE = "UPDATE evento SET ID_evento=?, nombre=?, recinto=?, ciudad=?, pais=?, modalidad=?, fecha=? WHERE ID_evento=?";
 	private final static String DELETE= "DELETE FROM evento WHERE ID_evento = ?";
 	
 	

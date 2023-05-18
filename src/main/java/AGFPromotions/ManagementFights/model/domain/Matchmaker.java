@@ -1,4 +1,4 @@
-package model.domain;
+package AGFPromotions.ManagementFights.model.domain;
 
 public class Matchmaker extends Persona{
 
@@ -13,6 +13,9 @@ public class Matchmaker extends Persona{
 		this.promotora="";
 		this.usuario="";
 		this.password="";
+	}
+	public Matchmaker(String dni,String usuario) {
+		super(dni,usuario,"");
 	}
 
 	public Matchmaker(String dni, String nombre, String apellidos, String promotora, String usuario, String password) {

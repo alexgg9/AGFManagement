@@ -1,4 +1,4 @@
-package model.domain;
+package AGFPromotions.ManagementFights.model.domain;
 
 public class Persona {
 

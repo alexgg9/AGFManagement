@@ -1,13 +1,15 @@
-package test;
+package AGFPromotions.ManagementFights.test;
 import java.sql.SQLException;
 import java.text.ParseException;
+
+import AGFPromotions.ManagementFights.model.DAO.*;
+import AGFPromotions.ManagementFights.model.domain.*;
+import AGFPromotions.ManagementFights.model.enums.Background;
+import AGFPromotions.ManagementFights.model.enums.Genero;
+import AGFPromotions.ManagementFights.model.enums.Modalidad;
+import AGFPromotions.ManagementFights.utils.Utils;
+
 import java.sql.Date;
-import model.DAO.*;
-import model.domain.*;
-import model.enums.Background;
-import model.enums.Genero;
-import model.enums.Modalidad;
-import utils.Utils;
 
 public class TestDAOS {
 	public static void main(String[] args) throws ParseException {
@@ -19,7 +21,7 @@ public class TestDAOS {
 		
 		Date d = null;
 		
-		Evento ev = new Evento(2,"Fight Night","Apex","Las Vegas","EEUU",Modalidad.MMA,d,p,p1,m);
+		//Evento ev = new Evento(2,"Fight Night","Apex","Las Vegas","EEUU",Modalidad.MMA,d,p,p1,m);
 		
 		PeleadorDAO pdao = new PeleadorDAO();
 		MatchmakerDAO mdao = new MatchmakerDAO();

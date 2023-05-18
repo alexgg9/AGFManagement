@@ -3,13 +3,15 @@ package AGFPromotions.ManagementFights;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import AGFPromotions.ManagementFights.model.DAO.MatchmakerDAO;
+import AGFPromotions.ManagementFights.model.domain.Matchmaker;
+import AGFPromotions.ManagementFights.model.singleton.MatchmakerSession;
+import AGFPromotions.ManagementFights.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
-import model.DAO.MatchmakerDAO;
-import utils.Utils;
 
 public class Login {
 	
@@ -27,6 +29,7 @@ public class Login {
 		String contraseña = tfPass.getText().trim();
 		contraseña = Utils.encryptSHA256(contraseña);
 		
+		
 		if(usuario.equals("") || contraseña.equals("")) {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setHeaderText(null);
@@ -35,7 +38,10 @@ public class Login {
 			alert.showAndWait();
 		}else {
 			MatchmakerDAO mDAO = new MatchmakerDAO();
-			if(mDAO.checkLogin(usuario, contraseña)) {
+			String dni;
+			if((dni=mDAO.checkLogin(usuario, contraseña))!=null) {
+				MatchmakerSession.login(dni, usuario);
+				//Logged
 				Alert alerta = new Alert(AlertType.INFORMATION);
 			    alerta.setTitle("Login");
 			    alerta.setHeaderText("Login exitoso");
@@ -43,6 +49,7 @@ public class Login {
 			    alerta.showAndWait();
 			    switchToUserPage();
 			}else {
+				MatchmakerSession.logout();
 				Alert alerta = new Alert(AlertType.INFORMATION);
 			    alerta.setTitle("Login");
 			    alerta.setHeaderText("No se ha podido logear");
@@ -53,6 +60,7 @@ public class Login {
 		}
 		
 	}
+	
 	
 	
 	@FXML

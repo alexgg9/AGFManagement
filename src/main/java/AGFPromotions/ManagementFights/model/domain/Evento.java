@@ -1,10 +1,9 @@
-package model.domain;
+package AGFPromotions.ManagementFights.model.domain;
 
-import java.time.LocalDate;
+
 import java.util.Date;
-import java.util.List;
 
-import model.enums.Modalidad;
+import AGFPromotions.ManagementFights.model.enums.Modalidad;
 
 public class Evento {
 	private int id_evento;
@@ -33,8 +32,8 @@ public class Evento {
 	}
 
 
-	public Evento(int id_evento, String nombre, String recinto, String ciudad, String pais, Modalidad modalidad,
-			Date fecha, Peleador f1, Peleador f2, Matchmaker m1) {
+	public Evento(int id_evento, String nombre, String recinto, String ciudad, String pais, Date fecha,
+			Modalidad modalidad, Peleador f1, Peleador f2, Matchmaker m1) {
 		super();
 		this.id_evento = id_evento;
 		this.nombre = nombre;

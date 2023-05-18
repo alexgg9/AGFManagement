@@ -1,4 +1,4 @@
-package model.DAO;
+package AGFPromotions.ManagementFights.model.DAO;
 
 import java.sql.SQLException;
 import java.util.List;

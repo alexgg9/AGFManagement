@@ -1,14 +1,16 @@
-package model.DAO;
+package AGFPromotions.ManagementFights.model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import AGFPromotions.ManagementFights.model.domain.Matchmaker;
+
 import java.util.ArrayList;
 
 import model.connection.ConnectionMySQL;
-import model.domain.Matchmaker;
 
 public class MatchmakerDAO implements DAO<Matchmaker>{
 	
@@ -117,16 +119,17 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		
 	}
 
-	public boolean checkLogin(String usuario, String password) throws SQLException {
-		String query = "SELECT COUNT(*) FROM matchmaker WHERE usuario = ? AND contraseña = ?";
+	public String checkLogin(String usuario, String password) throws SQLException {
+		String query = "SELECT dni_matchmaker FROM matchmaker WHERE usuario = ? AND contraseña = ?";
 		try (PreparedStatement pst = conn.prepareStatement(query)) {
-		pst.setString(1, usuario);
-		pst.setString(2, password);
-		ResultSet rs = pst.executeQuery();
-		rs.next();
-		int count = rs.getInt(1);
-		return count == 1;
+			pst.setString(1, usuario);
+			pst.setString(2, password);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				return rs.getString("dni_matchmaker");
+			}
 		}
-		}
+		return null;
+	}
 
 }

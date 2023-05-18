@@ -6,16 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import AGFPromotions.ManagementFights.model.connection.ConnectionMySQL;
 import AGFPromotions.ManagementFights.model.domain.Matchmaker;
 
 import java.util.ArrayList;
-
-import model.connection.ConnectionMySQL;
 
 public class MatchmakerDAO implements DAO<Matchmaker>{
 	
 	private final static String FINDALL = "SELECT * FROM matchmaker LIMIT 15";
 	private final static String FINDBYID = "SELECT * from matchmaker WHERE dni_matchmaker=?";
+	private final static String FINDBYUSERNAME = "SELECT * from matchmaker WHERE usuario=?";
 	private final static String INSERT = "INSERT INTO matchmaker (dni_matchmaker,nombre,apellidos,promotora,usuario,contraseña) VALUES (?,?,?,?,?,?)";
 	private final static String DELETE= "DELETE FROM matchmaker WHERE dni_matchmaker = ?";
 	private final static String UPDATE = "UPDATE matchmaker SET nombre=?, apellidos=?, promotora=?, usuario=?, contraseña=? WHERE dni_matchmaker=?";
@@ -74,6 +74,25 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		}
 		return result;
 	}
+	
+	@Override
+	public Matchmaker findByUsername(String username) throws SQLException {
+		Matchmaker result = null;
+		try(PreparedStatement pst=this.conn.prepareStatement(FINDBYUSERNAME)){
+			pst.setString(1, username);
+			try(ResultSet res = pst.executeQuery()){
+				if(res.next()) {
+					result = new Matchmaker();
+					result.setDni(res.getString("dni_matchmaker"));
+					result.setNombre(res.getString("nombre"));
+					result.setApellidos(res.getString("apellidos"));
+					result.setPromotora(res.getString("promotora"));
+					result.setUsuario(res.getString("usuario"));
+				}
+			}
+		}
+		return result;
+	}
 
 	@Override
 	public Matchmaker save(Matchmaker entity) throws SQLException {
@@ -82,7 +101,8 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		if(entity!=null) {
 			
 			Matchmaker m = findByDni(entity.getDni());
-			if(m == null) {
+			Matchmaker mUsername = findByUsername(entity.getUsuario());
+			if(m == null && mUsername == null) {
 				try(PreparedStatement pst=this.conn.prepareStatement(INSERT)){
 					pst.setString(1, entity.getDni());
 					pst.setString(2, entity.getNombre());

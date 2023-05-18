@@ -51,7 +51,48 @@ public class ControllerSingUp {
 	        return; 
 	    }
 		
+		
+		try {
+			if(matchmakerDAO.findByDni(dni)!=null) {
+			    Alert alert = new Alert(AlertType.ERROR);
+			    alert.setTitle("Error");
+			    alert.setHeaderText("Dni existente");
+			    alert.setContentText("El dni del matchmaker ya está en uso.\nPor favor, elija otro.");
+			    alert.showAndWait();
+			    return; 
+			}
+			
+		} catch (SQLException e) {
+				Alert alert = new Alert(AlertType.ERROR);
+			    alert.setTitle("Error");
+			    alert.setHeaderText("Error en la consulta");
+			    alert.setContentText("Ocurrió un error al consultar la existencia del dni.");
+			    alert.showAndWait();
+			    e.printStackTrace();
+			    return;
+		}
+		
+		try {
+			if(matchmakerDAO.findByUsername(usuario)!=null) {
+			    Alert alert = new Alert(AlertType.ERROR);
+			    alert.setTitle("Error");
+			    alert.setHeaderText("Usuario existente");
+			    alert.setContentText("El nombre de usuario ya está siendo utilizado.\nPor favor, elija otro.");
+			    alert.showAndWait();
+			    return; 
+			}
+		} catch (SQLException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+		    alert.setTitle("Error");
+		    alert.setHeaderText("Error en la consulta");
+		    alert.setContentText("Ocurrió un error al consultar la existencia del usuario.");
+		    alert.showAndWait();
+		    e.printStackTrace();
+		    return;
+		}
+		
 		Matchmaker nMatchmaker = new Matchmaker(dni,nombre,apellidos,promotora,usuario,contraseña);
+		
 		try {
 			matchmakerDAO.save(nMatchmaker);
 			Alert alerta = new Alert(AlertType.INFORMATION);
@@ -60,6 +101,11 @@ public class ControllerSingUp {
 		    alerta.setContentText("Se ha registrado el Matchmaker correctamente.");
 		    alerta.showAndWait();
 		} catch (SQLException e) {
+			Alert alerta = new Alert(AlertType.ERROR);
+		    alerta.setTitle("Registro de Matchmaker");
+		    alerta.setHeaderText("Registro erroneo");
+		    alerta.setContentText("No se ha registrado el Matchmaker correctamente.");
+		    alerta.showAndWait();
 			e.printStackTrace();
 			
 		}

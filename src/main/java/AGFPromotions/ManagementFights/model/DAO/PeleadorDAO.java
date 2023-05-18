@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import AGFPromotions.ManagementFights.model.connection.ConnectionMySQL;
+import AGFPromotions.ManagementFights.model.domain.Matchmaker;
 import AGFPromotions.ManagementFights.model.domain.Peleador;
 import AGFPromotions.ManagementFights.model.enums.Background;
 import AGFPromotions.ManagementFights.model.enums.Genero;
-import model.connection.ConnectionMySQL;
 
 public class PeleadorDAO implements DAO<Peleador>{
 
@@ -128,6 +129,11 @@ public class PeleadorDAO implements DAO<Peleador>{
 	            pst.executeUpdate();
 	        }
 		}
+	}
+	@Override
+	public Matchmaker findByUsername(String username) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

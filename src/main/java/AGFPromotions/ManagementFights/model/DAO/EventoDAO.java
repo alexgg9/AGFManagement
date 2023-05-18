@@ -8,19 +8,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import AGFPromotions.ManagementFights.model.connection.ConnectionMySQL;
 import AGFPromotions.ManagementFights.model.domain.Evento;
 import AGFPromotions.ManagementFights.model.domain.Matchmaker;
 import AGFPromotions.ManagementFights.model.domain.Peleador;
 import AGFPromotions.ManagementFights.model.enums.Modalidad;
-import model.connection.ConnectionMySQL;
 
 
 public class EventoDAO implements DAO<Evento>{
 	
 	private final static String FINDALL = "SELECT * FROM evento";
 	private final static String FINDBYID = "SELECT * from evento WHERE ID_evento=?";
-	private final static String INSERT = "INSERT INTO evento (ID_evento,nombre,recinto,ciudad,pais,modalidad,fecha,dni_peleador1,dni_peleador2,dni_matchmaker) VALUES (?,?,?,?,?,?,?,?,?,?)";
-	private final static String UPDATE = "UPDATE evento SET ID_evento=?, nombre=?, recinto=?, ciudad=?, pais=?, modalidad=?, fecha=? WHERE ID_evento=?";
+	private final static String INSERT = "INSERT INTO evento (ID_evento,nombre,recinto,ciudad,pais,modalidad,fecha,dni_peleador1,dni_peleador2,dni_matchmaker) VALUES (?,?,?,?,?,?,?,?,?)";
+	private final static String UPDATE = "UPDATE evento SET nombre=?, recinto=?, ciudad=?, pais=?, modalidad=?, fecha=?, dni_peleador1=? , dni_peleador2=?  WHERE ID_evento=?";
 	private final static String DELETE= "DELETE FROM evento WHERE ID_evento = ?";
 	
 	
@@ -58,6 +58,9 @@ public class EventoDAO implements DAO<Evento>{
 					e.setF1(p1);
 					Peleador p2 = pdao.findByDni(res.getString("dni_peleador2"));
 					e.setF2(p2);
+					MatchmakerDAO mdao = new MatchmakerDAO(this.conn);
+					Matchmaker m1 = mdao.findByDni(res.getString("dni_matchmaker"));
+					e.setM1(m1);
 					result.add(e);
 				}
 			}
@@ -123,8 +126,7 @@ public class EventoDAO implements DAO<Evento>{
 					pst.setDate(6, (Date) entity.getFecha());
 					pst.setString(7, entity.getF1().getDni());
 					pst.setString(8, entity.getF2().getDni());
-					pst.setString(9, entity.getM1().getDni());
-					pst.setInt(10, entity.getId_evento());
+					pst.setInt(9, entity.getId_evento());
 					pst.executeUpdate();				
 				}
 			}
@@ -146,6 +148,12 @@ public class EventoDAO implements DAO<Evento>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public Matchmaker findByUsername(String username) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 	
 

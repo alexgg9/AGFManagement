@@ -1,7 +1,7 @@
 module ManagementFights {
 	exports AGFPromotions.ManagementFights;
 	exports AGFPromotions.ManagementFights.model.enums;
-	exports model.connection;
+	exports AGFPromotions.ManagementFights.model.connection;
 	exports AGFPromotions.ManagementFights.test;
 	exports AGFPromotions.ManagementFights.utils;
 	exports AGFPromotions.ManagementFights.model.domain;
@@ -16,6 +16,6 @@ module ManagementFights {
 	requires javafx.graphics;
 
 	
-	opens model.connection to java.xml.bind;
+	opens AGFPromotions.ManagementFights.model.connection to java.xml.bind;
 	opens AGFPromotions.ManagementFights to javafx.fxml;
 }

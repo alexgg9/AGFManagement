@@ -63,7 +63,7 @@ public class ControllerEvent {
     @FXML
     private TableColumn<Evento, String> colPeleador2;
     @FXML
-    private TableColumn<Evento, Matchmaker> colMatchmaker;
+    private TableColumn<Evento, String> colMatchmaker;
 	
     EventoDAO eventoDAO = new EventoDAO();
     PeleadorDAO peleadorDAO = new PeleadorDAO();
@@ -78,6 +78,10 @@ public class ControllerEvent {
     }
     @FXML
     private void btaddEvent() throws SQLException {
+    	addEvent();
+    }
+    @FXML
+    private void btUpdate() throws SQLException {
     	addEvent();
     }
     @FXML
@@ -179,7 +183,7 @@ public class ControllerEvent {
     	
     	colPeleador2.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getF2().getDni()));
     	
-    	colMatchmaker.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getM1()));
+    	colMatchmaker.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getM1().getDni()));
     	
     	tvEvents.getItems().addAll(eventos);
 		}else {

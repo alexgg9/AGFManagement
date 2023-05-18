@@ -1,10 +1,10 @@
-package model.domain;
+package AGFPromotions.ManagementFights.model.domain;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import model.enums.Background;
-import model.enums.Genero;
+import AGFPromotions.ManagementFights.model.enums.Background;
+import AGFPromotions.ManagementFights.model.enums.Genero;
 
 public class Peleador extends Persona{
 	

@@ -8,6 +8,14 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 import java.util.List;
+
+import AGFPromotions.ManagementFights.model.DAO.EventoDAO;
+import AGFPromotions.ManagementFights.model.DAO.PeleadorDAO;
+import AGFPromotions.ManagementFights.model.domain.Evento;
+import AGFPromotions.ManagementFights.model.domain.Matchmaker;
+import AGFPromotions.ManagementFights.model.domain.Peleador;
+import AGFPromotions.ManagementFights.model.enums.Modalidad;
+import AGFPromotions.ManagementFights.model.singleton.MatchmakerSession;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,12 +29,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import model.domain.Evento;
-import model.domain.Matchmaker;
-import model.domain.Peleador;
-import model.enums.Modalidad;
-import model.DAO.EventoDAO;
-import model.DAO.PeleadorDAO;
 public class ControllerEvent {
 	
 	
@@ -66,12 +68,17 @@ public class ControllerEvent {
     EventoDAO eventoDAO = new EventoDAO();
     PeleadorDAO peleadorDAO = new PeleadorDAO();
     private ObservableList<Evento> eventos;
+    
 
     
     
     @FXML
     private void switchToMenu() throws IOException {
         App.setRoot("menu");
+    }
+    @FXML
+    private void btaddEvent() throws SQLException {
+    	addEvent();
     }
     @FXML
     private void btGetAll() throws SQLException {
@@ -181,19 +188,25 @@ public class ControllerEvent {
 	}
     
     
+    private Peleador getSelectedPeleador(ComboBox<String> comboBox) throws SQLException {
+        String selectedValue = comboBox.getValue();
+        Peleador peleador = peleadorDAO.findByDni(selectedValue);
+        return peleador;
+    }
+    
     @FXML
-    private void addEvent() {
+    private void addEvent() throws SQLException {
     	int id = Integer.parseInt(tfId.getText());
     	String nombre = tfNombre.getText();    
     	String recinto = tfRecinto.getText();    
     	String ciudad = tfCiudad.getText();
     	String pais = tfPais.getText();
     	LocalDate localDate = dtFecha.getValue();
-    	ZoneId defaultZoneId = ZoneId.systemDefault();
-    	Date fecha = (Date) Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
-    	Peleador peleador1 = cbPeleador1.getValue();
-    	Peleador peleador2 = cbPeleador2.getValue();
-    	Matchmaker matchmaker = null;
+    	java.sql.Date fecha = java.sql.Date.valueOf(localDate);
+    	Modalidad modalidad = cbModalidad.getValue();
+    	Peleador peleador1 = getSelectedPeleador(cbPeleador1);
+    	Peleador peleador2 = getSelectedPeleador(cbPeleador2);
+    	Matchmaker matchmaker = MatchmakerSession.getUser();
     	
     	
     	if (nombre.isEmpty() || recinto.isEmpty() || pais.isEmpty() || ciudad.isEmpty()) {
@@ -205,8 +218,24 @@ public class ControllerEvent {
 	        return;
 		}
     	
-    	Evento nEvento = new Evento (id,nombre,recinto,ciudad,pais,fecha,peleador1,peleador2,matchmaker);    	
+    	Evento nEvento = new Evento (id,nombre,recinto,ciudad,pais,fecha,modalidad,peleador1,peleador2,matchmaker);
+    	try {
+			eventoDAO.save(nEvento);
+			Alert alerta = new Alert(AlertType.INFORMATION);
+		    alerta.setTitle("Registro de Evento");
+		    alerta.setHeaderText("Registro exitoso");
+		    alerta.setContentText("Se ha registrado el evento correctamente.");
+		    alerta.showAndWait();
+		} catch (Exception e) {
+			Alert alerta = new Alert(AlertType.ERROR);
+		    alerta.setTitle("Registro de Evento");
+		    alerta.setHeaderText("Error");
+		    alerta.setContentText("No se ha registrado el evento correctamente.");
+		    alerta.showAndWait();
+		    e.printStackTrace();
+		}
     }
+    
     
     @FXML
     private void deleteSelected() {

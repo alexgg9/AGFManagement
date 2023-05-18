@@ -4,17 +4,14 @@ package AGFPromotions.ManagementFights;
 import java.io.IOException;
 import java.sql.SQLException;
 
-
-
+import AGFPromotions.ManagementFights.model.DAO.MatchmakerDAO;
+import AGFPromotions.ManagementFights.model.domain.Matchmaker;
+import AGFPromotions.ManagementFights.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import model.DAO.MatchmakerDAO;
-import model.domain.Matchmaker;
-import utils.Utils;
 
 
 public class ControllerSingUp {

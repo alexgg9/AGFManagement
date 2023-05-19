@@ -27,9 +27,9 @@
             </Label>
             <TextField fx:id="tfApellidos" layoutX="696.0" layoutY="205.0" />
             <PasswordField fx:id="tfPass" layoutX="696.0" layoutY="329.0" />
-            <Label alignment="CENTER" layoutX="341.0" layoutY="23.0" prefHeight="39.0" prefWidth="255.0" text="MATCHMAKER PAGE">
+            <Label alignment="CENTER" layoutX="358.0" layoutY="23.0" prefHeight="40.0" prefWidth="323.0" text="MATCHMAKER PAGE">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="28.0" />
                </font>
             </Label>
             <Button layoutX="697.0" layoutY="397.0" mnemonicParsing="false" onAction="#btUpdate" prefHeight="38.0" prefWidth="102.0" style="-fx-background-color: black;" text="Actualizar" textFill="WHITE">

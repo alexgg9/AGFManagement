@@ -200,6 +200,7 @@ public class ControllerEvent {
     
     @FXML
     private void addEvent() throws SQLException {
+    	
     	int id = Integer.parseInt(tfId.getText());
     	String nombre = tfNombre.getText();    
     	String recinto = tfRecinto.getText();    
@@ -222,22 +223,55 @@ public class ControllerEvent {
 	        return;
 		}
     	
-    	Evento nEvento = new Evento (id,nombre,recinto,ciudad,pais,fecha,modalidad,peleador1,peleador2,matchmaker);
-    	try {
-			eventoDAO.save(nEvento);
-			Alert alerta = new Alert(AlertType.INFORMATION);
-		    alerta.setTitle("Registro de Evento");
-		    alerta.setHeaderText("Registro exitoso");
-		    alerta.setContentText("Se ha registrado el evento correctamente.");
-		    alerta.showAndWait();
-		} catch (Exception e) {
-			Alert alerta = new Alert(AlertType.ERROR);
-		    alerta.setTitle("Registro de Evento");
-		    alerta.setHeaderText("Error");
-		    alerta.setContentText("No se ha registrado el evento correctamente.");
-		    alerta.showAndWait();
-		    e.printStackTrace();
-		}
+    	if(peleador1.getDni().equals(peleador2.getDni())) {
+    		Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Error");
+	        alert.setHeaderText("Dni de los peleadores iguales");
+	        alert.setContentText("Por favor, inserte dni distintos.");
+	        alert.showAndWait();
+	        return;
+	        
+    	}else {
+    		
+    	    if (!peleador1.getGenero().equals(peleador2.getGenero())) {
+    	    	Alert alert = new Alert(AlertType.ERROR);
+    	        alert.setTitle("Error");
+    	        alert.setHeaderText("El género de los peleadores es distinto");
+    	        alert.setContentText("Por favor, inserte dos peleadores con el mismo género.");
+    	        alert.showAndWait();
+    	        return;
+    	        
+    	    } else {
+    	        if (peleador1.getPeso() != peleador2.getPeso()) {
+    	        	Alert alert = new Alert(AlertType.ERROR);
+        	        alert.setTitle("Error");
+        	        alert.setHeaderText("El peso de los peleadores es distinto");
+        	        alert.setContentText("Por favor, inserte dos peleadores con el mismo peso.");
+        	        alert.showAndWait();
+        	        return;
+        	        
+    	        } else {
+    	        	
+    	        	Evento nEvento = new Evento (id,nombre,recinto,ciudad,pais,fecha,modalidad,peleador1,peleador2,matchmaker);
+    	        	
+    	        	try {
+    	    			eventoDAO.save(nEvento);
+    	    			Alert alerta = new Alert(AlertType.INFORMATION);
+    	    		    alerta.setTitle("Registro de Evento");
+    	    		    alerta.setHeaderText("Registro exitoso");
+    	    		    alerta.setContentText("Se ha registrado el evento correctamente.");
+    	    		    alerta.showAndWait();
+    	    		} catch (Exception e) {
+    	    			Alert alerta = new Alert(AlertType.ERROR);
+    	    		    alerta.setTitle("Registro de Evento");
+    	    		    alerta.setHeaderText("Error");
+    	    		    alerta.setContentText("No se ha registrado el evento correctamente.");
+    	    		    alerta.showAndWait();
+    	    		    e.printStackTrace();
+    	    		}
+    	        }
+    	    }
+    	}
     }
     
     

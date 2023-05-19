@@ -57,6 +57,10 @@ public class App extends Application {
               newScene = createScene(fxml, 794, 527);
               primaryStage.setResizable(false);
           
+          }else if(fxml.equals("register")){
+              newScene = createScene(fxml, 640, 460);
+              primaryStage.setResizable(false);
+       
           }else {
               newScene = createScene(fxml, 640, 480);
               primaryStage.setResizable(true);

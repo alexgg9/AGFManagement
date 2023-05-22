@@ -159,7 +159,9 @@ public class ControllerEvent {
     
     @FXML
 	private void getAll() throws SQLException {
-		List<Evento> eventos = eventoDAO.findAll();	
+		List<Evento> eventos = eventoDAO.findAll();
+		
+		// Configurar las columnas de la tabla y agregar los eventos a la lista
 		
 		if(tvEvents.getItems().isEmpty()) {
 		

@@ -44,47 +44,30 @@ public class ControllerSingUp {
 		if (dni.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || promotora.isEmpty() || usuario.isEmpty() || contraseña.isEmpty()) {
 			
 	        Utils.showPopUp("Error", "Campos vacíos", "Por favor, complete todos los campos.", Alert.AlertType.ERROR);
+	    }else {
+	    	try {
+	            if (matchmakerDAO.findByDni(dni) != null) {
+	                Utils.showPopUp("Error", "DNI existente", "El DNI del matchmaker ya está en uso.\nPor favor, elija otro.", Alert.AlertType.ERROR);
+	            } else if (matchmakerDAO.findByUsername(usuario) != null) {
+	                Utils.showPopUp("Error", "Usuario existente", "El nombre de usuario ya está siendo utilizado.\nPor favor, elija otro.", Alert.AlertType.ERROR);
+	            } else {
+	                
+	                Matchmaker nMatchmaker = new Matchmaker(dni, nombre, apellidos, promotora, usuario, contraseña);
+	                matchmakerDAO.save(nMatchmaker);
+	                
+	                Utils.showPopUp("Registro de Matchmaker", "Registro exitoso", "Se ha registrado el Matchmaker correctamente.", Alert.AlertType.INFORMATION);
+	            }
+	        } catch (SQLException e) {
+	            Utils.showPopUp("Error", "Error en la consulta", "Ocurrió un error al consultar la existencia del DNI o usuario.", Alert.AlertType.ERROR);
+	            e.printStackTrace();
+
+	        }
 	    }
-		
-		
-		try {
-			if(matchmakerDAO.findByDni(dni)!=null) {
-			    
-			    Utils.showPopUp("Error", "Dni existente", "El dni del matchmaker ya está en uso.\nPor favor, elija otro.", Alert.AlertType.ERROR);
-			}
-			
-		} catch (SQLException e) {
-			
-			    Utils.showPopUp("Error", "Error en la consulta", "Ocurrió un error al consultar la existencia del dni.", Alert.AlertType.ERROR);
-			    e.printStackTrace();
+	   
 
-		}
-		
-		try {
-			if(matchmakerDAO.findByUsername(usuario)!=null) {
-
-			    Utils.showPopUp("Error", "Usuario existente", "El nombre de usuario ya está siendo utilizado.\nPor favor, elija otro.", Alert.AlertType.ERROR);
-			}
-		} catch (SQLException e) {
-			
-		    Utils.showPopUp("Error", "Error en la consulta", "Ocurrió un error al consultar la existencia del usuario.", Alert.AlertType.ERROR);
-		    e.printStackTrace();
-		}
-		
-		Matchmaker nMatchmaker = new Matchmaker(dni,nombre,apellidos,promotora,usuario,contraseña);
-		
-		try {
-			matchmakerDAO.save(nMatchmaker);
-		    Utils.showPopUp("Registro de Matchmaker", "Registro exitoso", "Se ha registrado el Matchmaker correctamente.", Alert.AlertType.INFORMATION);
-
-		} catch (SQLException e) {
-		    Utils.showPopUp("Error", "Registro erroneo", "No se ha registrado el Matchmaker correctamente.", Alert.AlertType.ERROR);
-			e.printStackTrace();
-			
-		}
-		
-		
 	}
+		
+
 	
 	@FXML
 	private void closeSesion() {

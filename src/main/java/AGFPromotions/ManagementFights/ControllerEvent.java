@@ -16,6 +16,7 @@ import AGFPromotions.ManagementFights.model.domain.Matchmaker;
 import AGFPromotions.ManagementFights.model.domain.Peleador;
 import AGFPromotions.ManagementFights.model.enums.Modalidad;
 import AGFPromotions.ManagementFights.model.singleton.MatchmakerSession;
+import AGFPromotions.ManagementFights.utils.Utils;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -215,58 +216,41 @@ public class ControllerEvent {
     	
     	
     	if (nombre.isEmpty() || recinto.isEmpty() || pais.isEmpty() || ciudad.isEmpty()) {
-	        Alert alert = new Alert(AlertType.ERROR);
-	        alert.setTitle("Error");
-	        alert.setHeaderText("Campos vacíos");
-	        alert.setContentText("Por favor, complete todos los campos.");
-	        alert.showAndWait();
-	        return;
+
+	        Utils.showPopUp("Error", "Campos vacíos", "Por favor, complete todos los campos.", Alert.AlertType.ERROR);
+
 		}
     	
     	if(peleador1.getDni().equals(peleador2.getDni())) {
-    		Alert alert = new Alert(AlertType.ERROR);
-	        alert.setTitle("Error");
-	        alert.setHeaderText("Dni de los peleadores iguales");
-	        alert.setContentText("Por favor, inserte dni distintos.");
-	        alert.showAndWait();
-	        return;
+  
+	        Utils.showPopUp("Error", "Dni de los peleadores iguales", "Por favor, inserte dni distintos.", Alert.AlertType.ERROR);
+	        
 	        
     	}else {
     		
     	    if (!peleador1.getGenero().equals(peleador2.getGenero())) {
-    	    	Alert alert = new Alert(AlertType.ERROR);
-    	        alert.setTitle("Error");
-    	        alert.setHeaderText("El género de los peleadores es distinto");
-    	        alert.setContentText("Por favor, inserte dos peleadores con el mismo género.");
-    	        alert.showAndWait();
-    	        return;
+ 
+    	        Utils.showPopUp("Error", "El género de los peleadores es distinto", "Por favor, inserte dos peleadores con el mismo género.", Alert.AlertType.ERROR);
+
     	        
     	    } else {
+    	    	
     	        if (peleador1.getPeso() != peleador2.getPeso()) {
-    	        	Alert alert = new Alert(AlertType.ERROR);
-        	        alert.setTitle("Error");
-        	        alert.setHeaderText("El peso de los peleadores es distinto");
-        	        alert.setContentText("Por favor, inserte dos peleadores con el mismo peso.");
-        	        alert.showAndWait();
-        	        return;
+
+        	        Utils.showPopUp("Error", "El peso de los peleadores es distinto", "Por favor, inserte dos peleadores con el mismo peso.", Alert.AlertType.ERROR);
         	        
     	        } else {
     	        	
     	        	Evento nEvento = new Evento (id,nombre,recinto,ciudad,pais,fecha,modalidad,peleador1,peleador2,matchmaker);
     	        	
     	        	try {
+    	        		
     	    			eventoDAO.save(nEvento);
-    	    			Alert alerta = new Alert(AlertType.INFORMATION);
-    	    		    alerta.setTitle("Registro de Evento");
-    	    		    alerta.setHeaderText("Registro exitoso");
-    	    		    alerta.setContentText("Se ha registrado el evento correctamente.");
-    	    		    alerta.showAndWait();
+ 
+    	    		    Utils.showPopUp("Registro de Evento", "Registro exitoso", "Se ha registrado el evento correctamente.", Alert.AlertType.INFORMATION);
+    	    		    
     	    		} catch (Exception e) {
-    	    			Alert alerta = new Alert(AlertType.ERROR);
-    	    		    alerta.setTitle("Registro de Evento");
-    	    		    alerta.setHeaderText("Error");
-    	    		    alerta.setContentText("No se ha registrado el evento correctamente.");
-    	    		    alerta.showAndWait();
+    	    		    Utils.showPopUp("Registro de Evento", "Error", "No se ha registrado el evento correctamente.", Alert.AlertType.ERROR);
     	    		    e.printStackTrace();
     	    		}
     	        }
@@ -284,11 +268,7 @@ public class ControllerEvent {
 
             try {
 				eventoDAO.delete(selectedE);
-				Alert alerta = new Alert(AlertType.INFORMATION);
-			    alerta.setTitle("Eliminar");
-			    alerta.setHeaderText("Evento borrado");
-			    alerta.setContentText("Se ha eliminado el evento correctamente.");
-			    alerta.showAndWait();
+			    Utils.showPopUp("Eliminar", "Evento borrado", "Se ha eliminado el evento correctamente.", Alert.AlertType.INFORMATION);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

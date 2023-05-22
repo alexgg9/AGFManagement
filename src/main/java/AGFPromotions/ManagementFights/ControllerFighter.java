@@ -9,6 +9,7 @@ import AGFPromotions.ManagementFights.model.domain.Matchmaker;
 import AGFPromotions.ManagementFights.model.domain.Peleador;
 import AGFPromotions.ManagementFights.model.enums.Background;
 import AGFPromotions.ManagementFights.model.enums.Genero;
+import AGFPromotions.ManagementFights.utils.Utils;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -98,22 +99,14 @@ public class ControllerFighter {
 		Background background = cbBackground.getValue();
 		
 		if (dni.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || pais.isEmpty() || record.isEmpty()) {
-	        Alert alert = new Alert(AlertType.ERROR);
-	        alert.setTitle("Error");
-	        alert.setHeaderText("Campos vacíos");
-	        alert.setContentText("Por favor, complete todos los campos.");
-	        alert.showAndWait();
-	        return;
+	        
+	        Utils.showPopUp("Error", "Campos vacíos", "Por favor, complete todos los campos.", Alert.AlertType.ERROR);
 		}
 		
 		Peleador nPeleador = new Peleador(dni,nombre,apellidos,edad,genero,peso,altura,record,pais,background);
 		try {
 			peleadorDAO.save(nPeleador);
-			Alert alerta = new Alert(AlertType.INFORMATION);
-		    alerta.setTitle("Registro de Peleador");
-		    alerta.setHeaderText("Registro exitoso");
-		    alerta.setContentText("Se ha registrado el peleador correctamente.");
-		    alerta.showAndWait();
+		    Utils.showPopUp("Registro de Peleador", "Registro exitoso", "Se ha registrado el peleador correctamente.", Alert.AlertType.INFORMATION);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
@@ -159,11 +152,7 @@ public class ControllerFighter {
 
 	            try {
 					peleadorDAO.delete(selectedF);
-					Alert alerta = new Alert(AlertType.INFORMATION);
-				    alerta.setTitle("Eliminar");
-				    alerta.setHeaderText("Peleador borrado");
-				    alerta.setContentText("Se ha eliminado el peleador correctamente.");
-				    alerta.showAndWait();
+				    Utils.showPopUp("Eliminar", "Peleador borrado", "Se ha eliminado el peleador correctamente.", Alert.AlertType.INFORMATION);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -214,13 +203,9 @@ public class ControllerFighter {
 
 		try {
 			peleadorDAO.delete(p);
-			Alert alerta = new Alert(AlertType.INFORMATION);
-		    alerta.setTitle("Eliminar Peleador");
-		    alerta.setHeaderText("Eliminado exitosamente");
-		    alerta.setContentText("Se ha registrado el peleador correctamente.");
-		    alerta.showAndWait();
+		    Utils.showPopUp("Eliminar Peleador", "Eliminado exitosamente", "Se ha registrado el peleador correctamente.", Alert.AlertType.INFORMATION);
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}	
 		
 	}

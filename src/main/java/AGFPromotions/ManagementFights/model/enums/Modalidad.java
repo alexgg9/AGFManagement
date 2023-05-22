@@ -1,5 +1,5 @@
 package AGFPromotions.ManagementFights.model.enums;
 
 public enum Modalidad {
-	MUAYTHAI, MMA, BJJNOGI, BJJGI;
+	MUAYTHAI, MMA, BJJ, KICKBOXING, BOX;
 }

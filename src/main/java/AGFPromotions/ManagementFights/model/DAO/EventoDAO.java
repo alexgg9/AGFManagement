@@ -17,7 +17,7 @@ import AGFPromotions.ManagementFights.model.enums.Modalidad;
 
 public class EventoDAO implements DAO<Evento>{
 	
-	private final static String FINDALL = "SELECT * FROM evento";
+	private final static String FINDALL = "SELECT * FROM evento LIMIT 15";
 	private final static String FINDBYID = "SELECT * from evento WHERE ID_evento=?";
 	private final static String INSERT = "INSERT INTO evento (ID_evento,nombre,recinto,ciudad,pais,modalidad,fecha,dni_peleador1,dni_peleador2,dni_matchmaker) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private final static String UPDATE = "UPDATE evento SET nombre=?, recinto=?, ciudad=?, pais=?, modalidad=?, fecha=?, dni_peleador1=? , dni_peleador2=?  WHERE ID_evento=?";
@@ -38,7 +38,9 @@ public class EventoDAO implements DAO<Evento>{
 		conn.close();
 		
 	}
-
+	/**
+	 * Función que devuelde todos los Eventos de la base de datos
+	 */
 	@Override
 	public List findAll() throws SQLException {
 		List<Evento> result = new ArrayList();

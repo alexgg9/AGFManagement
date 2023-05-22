@@ -35,7 +35,10 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		conn.close();
 		
 	}
-
+	
+	/**
+	 * Función que devuelve todos los matchmakers de la base de datos.
+	 */
 	@Override
 	public List<Matchmaker> findAll() throws SQLException {
 		List<Matchmaker> result = new ArrayList<Matchmaker>();
@@ -75,6 +78,9 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		return result;
 	}
 	
+	/**
+	 * Función que busca por usuario.
+	 */
 	@Override
 	public Matchmaker findByUsername(String username) throws SQLException {
 		Matchmaker result = null;
@@ -93,7 +99,10 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		}
 		return result;
 	}
-
+	
+	/**
+	 * Función que sirve para guardar y para actualizar.
+	 */
 	@Override
 	public Matchmaker save(Matchmaker entity) throws SQLException {
 		Matchmaker result = new Matchmaker();
@@ -128,6 +137,10 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		return result;
 	}
 
+	
+	/**
+	 * Función para eliminar.
+	 */
 	@Override
 	public void delete(Matchmaker entity) throws SQLException {
 		if (entity != null) {
@@ -138,7 +151,8 @@ public class MatchmakerDAO implements DAO<Matchmaker>{
 		}
 		
 	}
-
+	
+	//Funcion que comprueba el usuario y la contraseña para el login
 	public String checkLogin(String usuario, String password) throws SQLException {
 		String query = "SELECT dni_matchmaker FROM matchmaker WHERE usuario = ? AND contraseña = ?";
 		try (PreparedStatement pst = conn.prepareStatement(query)) {

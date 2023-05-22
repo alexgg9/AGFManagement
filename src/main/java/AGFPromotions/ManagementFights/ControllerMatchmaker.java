@@ -74,22 +74,15 @@ public class ControllerMatchmaker {
 		
 		
 		if (dni.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || promotora.isEmpty() || usuario.isEmpty() || contraseña.isEmpty()) {
-	        Alert alert = new Alert(AlertType.ERROR);
-	        alert.setTitle("Error");
-	        alert.setHeaderText("Campos vacíos");
-	        alert.setContentText("Por favor, complete todos los campos.");
-	        alert.showAndWait();
-	        return;
+	        
+	        Utils.showPopUp("Error", "Campos vacíos", "Por favor, complete todos los campos.", Alert.AlertType.ERROR);
+
 		}
 		
 		Matchmaker nMatchmaker = new Matchmaker(dni,nombre,apellidos,promotora,usuario,contraseña);
 		try {
 			mDAO.save(nMatchmaker);
-			Alert alerta = new Alert(AlertType.INFORMATION);
-		    alerta.setTitle("Matchmaker");
-		    alerta.setHeaderText("Actualización exitosa");
-		    alerta.setContentText("Se ha actualizado el Matchmaker correctamente.");
-		    alerta.showAndWait();
+		    Utils.showPopUp("Matchmaker", "Actualización exitosa", "Se ha actualizado el Matchmaker correctamente.", Alert.AlertType.INFORMATION);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
@@ -129,11 +122,7 @@ public class ControllerMatchmaker {
 
             try {
 				mDAO.delete(selectedMatchmaker);
-				Alert alerta = new Alert(AlertType.INFORMATION);
-			    alerta.setTitle("Eliminar");
-			    alerta.setHeaderText("Matchmaker borrado");
-			    alerta.setContentText("Se ha eliminado el Matchmaker correctamente.");
-			    alerta.showAndWait();
+			    Utils.showPopUp("Eliminar", "Matchmaker borrado", "Se ha eliminado el Matchmaker correctamente.", Alert.AlertType.INFORMATION);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
